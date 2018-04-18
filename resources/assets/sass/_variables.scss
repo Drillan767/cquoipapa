@@ -1,8 +1,7 @@
+@import url("https://fonts.googleapis.com/css?family=PT+Sans");
 
-// Body
-$body-bg: #f5f8fa;
+$green: #1cd0a8;
 
-// Typography
-$font-family-sans-serif: "Raleway", sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+a, h1, h2, h3, h4, h5, h6, p {
+  font-family: "PT Sans", sans-serif;
+}
