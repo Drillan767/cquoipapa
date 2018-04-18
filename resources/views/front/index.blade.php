@@ -73,21 +73,34 @@
 
 {{-- DESCRIPTION --}}
 
-<div class="row" id="description">
-    <div class="col-md-3">
+<div class="container-fluid" id="description">
+<div class="row">
+    <div class="col-md-3 text-center">
         <img src="https://placekitten.com/g/200/300" alt="">
     </div>
     <div class="col-md-9">
-        <p>
-            Marfa mixtape unicorn, snackwave venmo poutine leggings artisan pitchfork chambray helvetica. Adaptogen locavore tilde, taiyaki food truck selfies umami poke iceland. Neutra taxidermy freegan la croix copper mug, iceland pok pok pinterest celiac yuccie. Raclette shoreditch offal fingerstache, etsy scenester lo-fi cloud bread typewriter pork belly man braid shaman tofu brooklyn keytar. Authentic tumblr retro, jianbing pitchfork raclette beard raw denim farm-to-table. Art party edison bulb forage offal.
-        </p>
-        <p>
-            Man braid craft beer direct trade wolf subway tile tofu. Scenester raclette irony tote bag, PBR&B fixie +1 offal. Tumeric fam hammock DIY succulents taxidermy snackwave, salvia tbh. Hashtag biodiesel squid, portland listicle vape lo-fi. Marfa offal jean shorts, snackwave artisan chicharrones occupy quinoa keytar. VHS deep v seitan, messenger bag palo santo pitchfork hella forage.
-        </p>
+        <div class="description">
+            <p>
+                Marfa mixtape unicorn, snackwave venmo poutine leggings artisan pitchfork chambray helvetica. Adaptogen locavore tilde, taiyaki food truck selfies umami poke iceland. Neutra taxidermy freegan la croix copper mug, iceland pok pok pinterest celiac yuccie. Raclette shoreditch offal fingerstache, etsy scenester lo-fi cloud bread typewriter pork belly man braid shaman tofu brooklyn keytar. Authentic tumblr retro, jianbing pitchfork raclette beard raw denim farm-to-table. Art party edison bulb forage offal.
+            </p>
+            <p>
+                Man braid craft beer direct trade wolf subway tile tofu. Scenester raclette irony tote bag, PBR&B fixie +1 offal. Tumeric fam hammock DIY succulents taxidermy snackwave, salvia tbh. Hashtag biodiesel squid, portland listicle vape lo-fi. Marfa offal jean shorts, snackwave artisan chicharrones occupy quinoa keytar. VHS deep v seitan, messenger bag palo santo pitchfork hella forage.
+            </p>
+        </div>
     </div>
 </div>
 
+</div>
+
 {{-- DESCRIPTION --}}
+
+{{-- STATISTICS --}}
+
+<div id="stats">
+
+</div>
+
+{{-- STATISTICS --}}
 
 <script src="{{ asset('js/index.js') }}"></script>
 </body>
