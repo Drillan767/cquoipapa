@@ -48,4 +48,10 @@ body {
   height: 50vh;
   background: url('../img/023.jpg') no-repeat center;
   background-size: cover;
+
+  .block {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
 }

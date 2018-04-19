@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="{{ app()->getLocale() }}">
 <head>
     <title>C'est quoi papa ?</title>
     <meta charset="utf-8">
