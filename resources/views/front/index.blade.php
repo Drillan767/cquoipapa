@@ -99,8 +99,19 @@
 <div id="stats">
 
 </div>
-
 {{-- STATISTICS --}}
+
+<div id="download" class="container-fluid">
+    <div class="row">
+        <div class="col-md-9">
+            <h3>Disponible sur</h3>
+            <img src="{{asset('img/gplay.png')}}" alt="">
+        </div>
+        <div class="col-md-3 text-center">
+            <img src="https://placekitten.com/g/200/300" alt="">
+        </div>
+    </div>
+</div>
 
 <script src="{{ asset('js/index.js') }}"></script>
 </body>
