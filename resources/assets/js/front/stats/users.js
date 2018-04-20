@@ -13,7 +13,7 @@ export default class Users extends React.Component {
                 </div>
 
                 <h4>{lang === 'fr' ? 'Utilisateurs' : 'Users'}</h4>
-                <p>dolor sic amet mes couilles sur ton front</p>
+                <p>Proin eleifend fringilla dolor, non bibendum nisl.</p>
 
             </div>
         )

@@ -11,7 +11,7 @@ export default class Contributors extends React.Component {
                     <p>1234</p>
                 </div>
                 <h4>{lang === 'fr' ? 'Contributeurs' : 'Contributors'}</h4>
-                <p>dolor sic amet mes couilles sur ton front</p>
+                <p>Proin eleifend fringilla dolor, non bibendum nisl.</p>
             </div>
         )
     }

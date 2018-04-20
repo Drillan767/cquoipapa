@@ -13,7 +13,7 @@ export default class Category extends React.Component {
                 </div>
 
                 <h4>{lang === 'fr' ? 'Catégories' : 'Categories'}</h4>
-                <p>dolor sic amet mes couilles sur ton front</p>
+                <p>Proin eleifend fringilla dolor, non bibendum nisl.</p>
             </div>
         )
     }

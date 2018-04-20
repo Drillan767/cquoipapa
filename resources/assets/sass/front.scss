@@ -100,9 +100,30 @@ body {
 #download {
   margin-top: 10px;
   height: 75vh;
-  background-color: #333333;
+  background: url('../img/family.jpg') no-repeat center;
+  background-size: cover;
 
-  h3 {
-    color: #fff;
+  .row {
+    align-items: center;
+
+    .col-md-9, .col-md-3 {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .col-md-9 {
+      img {
+        height: 20vh;
+        margin-top: 15vh;
+      }
+    }
+
+    .col-md-3 {
+      img {
+        margin-top: 15vh;
+        border-radius: $radius;
+      }
+    }
   }
 }

@@ -2,7 +2,7 @@
 
 <html lang="{{ app()->getLocale() }}">
 <head>
-    <title>C'est quoi papa ?</title>
+    <title>CKoiPapa</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="{{asset('css/front.css')}}">
@@ -12,7 +12,7 @@
 {{-- HEADER --}}
 
 <nav class="navbar navbar-expand-md navbar-light bg-light" id="header">
-    <a href="/" class="navbar-brand">Le Stadium</a>
+    <a href="/" class="navbar-brand">CKoiPapa</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar7">
         <span class="navbar-toggler-icon" />
     </button>
@@ -99,12 +99,14 @@
 <div id="stats">
 
 </div>
+
 {{-- STATISTICS --}}
+
+{{--DOWNLOAD--}}
 
 <div id="download" class="container-fluid">
     <div class="row">
         <div class="col-md-9">
-            <h3>Disponible sur</h3>
             <img src="{{asset('img/gplay.png')}}" alt="">
         </div>
         <div class="col-md-3 text-center">
@@ -112,6 +114,32 @@
         </div>
     </div>
 </div>
+
+{{-- DOWNLOAD --}}
+
+{{-- FOOTER --}}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-item nav-link" href="#">Mentions légales</a>
+            <a class="nav-item nav-link" href="#">Politique de confidentialité</a>
+            <a class="nav-item nav-link" href="#">Contact</a>
+        </div>
+    </div>
+
+    <div class="justify-content-stretch">
+        <span>
+            &copy; CkoiPapa - 2018
+        </span>
+    </div>
+</nav>
+
+{{--FOOTER--}}
+
 
 <script src="{{ asset('js/index.js') }}"></script>
 </body>

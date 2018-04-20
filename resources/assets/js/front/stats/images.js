@@ -9,7 +9,7 @@ export default class Images extends React.Component {
                 </div>
 
                 <h4>Images</h4>
-                <p>dolor sic amet mes couilles sur ton front</p>
+                <p>Proin eleifend fringilla dolor, non bibendum nisl.</p>
             </div>
         )
     }
