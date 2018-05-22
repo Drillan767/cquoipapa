@@ -28,13 +28,34 @@ class HomeController extends Controller {
 
 	/**
 	 * @param $request
+	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function postCategory($request) {
+	public function postCategory(Request $request) {
+		$input = $request->all();
 
+		$category = new Category();
+		$category->title = $request->category_title;
+		$category->description = $request->category_description;
+		$category->actif = isset($request->category_enabled) ? true : false;
+		$category->illustration = $this->uploadFile($request->category_illustration, $category->title);
+		$category->save();
+
+		return response()->json('shit is done');
 	}
 
 	public function categories() {
 		$categories = Category::all();
-		return view('admin.categories');
+		return view('admin.categories', ['categories' => $categories]);
+	}
+
+	public function category($id) {
+		$category = Category::find($id);
+		return view('admin.category', ['category' => $category]);
+	}
+
+	private function uploadFile($file, $name) {
+		$filename = $file->getClientOriginalName();
+		$path = $file->storeAs('public/category/' . $name, $filename);
+		return '/' . str_replace('public', 'storage', $path);
 	}
 }
