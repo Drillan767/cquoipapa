@@ -9,7 +9,7 @@ class category extends Model {
 	public $timestamps = false;
 	protected $table = 'category';
 
-	public function subCategory() {
+	public function item() {
 		return $this->hasMany('App\Item');
 	}
 }

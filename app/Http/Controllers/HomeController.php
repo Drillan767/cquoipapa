@@ -50,7 +50,36 @@ class HomeController extends Controller {
 
 	public function category($id) {
 		$category = Category::find($id);
-		return view('admin.category', ['category' => $category]);
+		$item = Category::find($id)->item;
+		return view('admin.category', ['category' => $category, 'items' => $item]);
+	}
+
+	public function items($id) {
+		$items = Category::find($id)->items;
+		return response()->json($items);
+	}
+
+	/**
+	 * @param $request
+	 * @param $id integer
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function postItem(Request $request, $id) {
+		$input = $request->all();
+
+		$category = Category::find($id);
+		$category->item->create([
+			'title' => $request->title,
+			'description' => $request->description,
+			//@TODO: lier les images aux objets
+		]);
+		$category->title = $request->category_title;
+		$category->description = $request->category_description;
+		$category->actif = isset($request->category_enabled) ? true : false;
+		$category->illustration = $this->uploadFile($request->category_illustration, $category->title);
+		$category->save();
+
+		return response()->json($id);
 	}
 
 	private function uploadFile($file, $name) {
