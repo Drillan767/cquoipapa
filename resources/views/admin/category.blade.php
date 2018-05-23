@@ -36,7 +36,7 @@
                         </div>
                         <div class="form-group">
                             <label for="item_illustration">Illustration</label>
-                            <input type="file" class="form-control-file" name="item_illustration" id="item_illustration" multiple="multiple">
+                            <input type="file" class="form-control-file" name="item_illustration[]" id="item_illustration" multiple="multiple">
                         </div>
                     </div>
                     <div class="modal-footer">

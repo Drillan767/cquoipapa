@@ -7,6 +7,8 @@ use Illuminate\Http\Response;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View;
 use App\Category;
+use Illuminate\Support\Facades\DB;
+use App\Item;
 
 class HomeController extends Controller {
 
@@ -36,10 +38,18 @@ class HomeController extends Controller {
 		$category->title = $request->category_title;
 		$category->description = $request->category_description;
 		$category->actif = isset($request->category_enabled) ? true : false;
-		$category->illustration = $this->uploadFile($request->category_illustration, $category->title);
+		$category->illustration = $this->uploadFile($request->category_illustration, $category->id);
 		$category->save();
 
-		return response()->json('shit is done');
+		return response()->json(Category::all());
+	}
+
+	public function editCategory(Request $request) {
+
+	}
+
+	public function deleteCategory(Request $request) {
+
 	}
 
 	public function categories() {
@@ -64,22 +74,33 @@ class HomeController extends Controller {
 	 * @return \Illuminate\Http\JsonResponse
 	 */
 	public function postItem(Request $request, $id) {
-		$input = $request->all();
 
 		$category = Category::find($id);
-		$category->item->create([
-			'title' => $request->title,
-			'description' => $request->description,
-			//@TODO: lier les images aux objets
+		$category->item()->create([
+			'title' => $request->item_title,
+			'description' => $request->item_description,
 		]);
 
+		$item = Item::find(Item::max('id'));
 
-		return response()->json($id);
+		foreach($request->item_illustration as $image) {
+			$item->image()->create([
+				'path' => $this->uploadItem($image, $category->id)
+			]);
+		}
+
+		return response()->json($item);
 	}
 
-	private function uploadFile($file, $name) {
+	private function uploadFile($file, $category_id) {
 		$filename = $file->getClientOriginalName();
-		$path = $file->storeAs('public/category/' . $name, $filename);
+		$path = $file->storeAs("public/category/$category_id", $filename);
+		return '/' . str_replace('public', 'storage', $path);
+	}
+
+	private function uploadItem($file, $category_id) {
+		$filename = $file->getClientOriginalName();
+		$path = $file->storeAs("public/category/$category_id/items", $filename);
 		return '/' . str_replace('public', 'storage', $path);
 	}
 }
