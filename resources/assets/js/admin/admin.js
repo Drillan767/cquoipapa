@@ -31,7 +31,7 @@ $("#new_category").submit(function(e) {
 $("#new_item").submit(function(e) {
     let formData = new FormData(this);
     $.each($('#item_illustration').files, function(i, file) {
-        // formData.append('category_illustration[]', file);
+        formData.append('category_illustration[]', file);
     });
     e.preventDefault();
 

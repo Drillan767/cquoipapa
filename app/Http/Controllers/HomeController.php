@@ -31,7 +31,6 @@ class HomeController extends Controller {
 	 * @return \Illuminate\Http\JsonResponse
 	 */
 	public function postCategory(Request $request) {
-		$input = $request->all();
 
 		$category = new Category();
 		$category->title = $request->category_title;
