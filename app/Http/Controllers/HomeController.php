@@ -73,11 +73,7 @@ class HomeController extends Controller {
 			'description' => $request->description,
 			//@TODO: lier les images aux objets
 		]);
-		$category->title = $request->category_title;
-		$category->description = $request->category_description;
-		$category->actif = isset($request->category_enabled) ? true : false;
-		$category->illustration = $this->uploadFile($request->category_illustration, $category->title);
-		$category->save();
+
 
 		return response()->json($id);
 	}
