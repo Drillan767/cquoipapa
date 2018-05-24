@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 @import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fontawesome.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-regular.css";
+@import "~@fortawesome/fontawesome-free-webfonts/css/fa-solid.css";
 @import '~jquery-ui/themes/base/core.css';
 @import '~jquery-ui/themes/base/theme.css';
 @import '~jquery-ui/themes/base/selectable.css';
@@ -12,4 +15,9 @@
 
 .thumbnail {
   max-height: 50px;
+}
+
+.add {
+  margin: 0 0 30px 0;
+  float: right;
 }

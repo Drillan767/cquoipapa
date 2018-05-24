@@ -14,7 +14,9 @@ Route::prefix('admin')->group(function () {
 Route::post('/admin/categories', 'HomeController@postCategory');
 Route::post('/admin/category/{id}/item', 'HomeController@postItem');
 Route::get('/admin/categories/{id}/items', 'HomeController@items');
+Route::post('/admin/category/{id}', 'HomeController@editCategory');
 
 Route::prefix('api/v1')->group(function() {
 	Route::get('categories', 'ApiController@categories');
+	Route::get('category/{id}', 'ApiController@getCategory');
 });

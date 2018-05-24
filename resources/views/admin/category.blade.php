@@ -2,12 +2,13 @@
 
 @section('content')
 
-
     <h3>{{ $category->title }}</h3>
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#m_new_item">
         Nouvel objet
     </button>
+
+    {{ dd($items) }}
 
     <div class="align-images">
         @if($items)
