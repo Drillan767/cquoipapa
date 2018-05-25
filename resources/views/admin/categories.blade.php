@@ -9,6 +9,7 @@
                 <i class="fas fa-plus"></i> Nouvelle catégorie
             </button>
         </div>
+        <div id="status"></div>
         <table class="table table-striped">
             <thead>
             <tr>
@@ -34,15 +35,15 @@
                     </td>
                     <td>
                         <button type="button" class="btn btn-outline-warning"><i class="far fa-edit"></i></button>
-                        <button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>
+                        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#m_delete_category">
+                            <i class="fas fa-trash"></i>
+                        </button>
                     </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
-
     </div>
-
 
     <!-- Nouvelle catégorie -->
     <div class="modal fade" id="m_new_category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -120,7 +121,7 @@
                             <input type="file" class="form-control-file" name="category_illustration">
                         </div>
                         <div class="form-check">
-                            <input type="checkbox" name="category_enabled" class="form-check-input" checked="checked">
+                            <input type="checkbox" name="category_enabled" class="form-check-input" {{ $category->actif ? 'checked="checked"': '' }}>
                             <label class="form-check-label" for="category_enabled">Actif</label>
                         </div>
                     </div>
@@ -129,6 +130,29 @@
                         <button type="submit" class="btn btn-primary">Enregistrer</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- supprimer catégorie -->
+    <div class="modal fade" id="m_delete_category" tabindex="-1" role="dialog" aria-labelledby="m_delete_category" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Supprimer catégorie</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Êtes-vous sûr de vouloir supprimer ?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                </div>
             </div>
         </div>
     </div>

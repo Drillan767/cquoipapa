@@ -44,8 +44,33 @@ class HomeController extends Controller {
 		return response()->json(Category::all());
 	}
 
-	public function editCategory(Request $request) {
-		response()->json($request);
+	public function editCategory(Request $request, $id) {
+
+		$category = Category::find($id);
+		$data = [];
+		$checkbox = isset($request->category_enabled) ? true : false;
+
+		if($category->title != $request->category_title) {
+			$data['title'] = $request->category_title;
+		}
+
+		if($request->description !== $request->category_description) {
+			$data['description'] = $request->category_description;
+		}
+
+		if($request->actif != $checkbox) {
+			$data['actif'] = $checkbox;
+		}
+
+		if(isset($request->category_illustration)) {
+			$data['illustration'] = $this->updateFile($request->category_illustration, $id);
+		}
+
+		if(!empty($data)) {
+			$category->update($data);
+		}
+
+		return response()->json($category);
 	}
 
 	public function deleteCategory(Request $request) {
@@ -110,6 +135,14 @@ class HomeController extends Controller {
 	 */
 	private function uploadFile($file, $category_id) {
 		$filename = $file->getClientOriginalName();
+		$path = $file->storeAs("public/category/$category_id", $filename);
+		return '/' . str_replace('public', 'storage', $path);
+	}
+
+	private function updateFile($file, $category_id) {
+		$category = Category::find($category_id);
+		$filename = $file->getClientOriginalName();
+		unlink(str_replace('storage', 'public', base_path() . $category->illustration));
 		$path = $file->storeAs("public/category/$category_id", $filename);
 		return '/' . str_replace('public', 'storage', $path);
 	}

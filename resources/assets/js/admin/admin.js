@@ -1,6 +1,5 @@
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import 'jquery-ui/ui/core';
-import ReactDOM from 'react-dom';
 
 $.ajaxSetup({
     headers: {
@@ -45,7 +44,7 @@ $("#new_item").submit(function(e) {
         processData: false,
         contentType: false,
         success: function(data){
-            console.log('chouette');
+            console.log(data);
         }
     });
 });
@@ -53,7 +52,7 @@ $("#new_item").submit(function(e) {
 $('.btn-outline-warning').on('click', function(e){
     e.preventDefault();
     let id = $(this).closest('tr').prop('id');
-    $.get(window.location.origin + '/api/v1/category/' + id, function( data ) {
+    $.get(window.location.origin + '/api/v1/category/' + id, function(data) {
         $('#m_edit_category h5.modal-title').empty().append('Éditer "' + data.title + '"');
         $('#m_edit_category input[name="category_id"]').val(data.id);
         $('#m_edit_category input[name="category_title"]').val(data.title);
@@ -63,7 +62,7 @@ $('.btn-outline-warning').on('click', function(e){
 });
 
 $("#edit_category").submit(function(e) {
-    let formData = new FormData($('#edit_category'));
+    let formData = new FormData(this);
     let id = $('#m_edit_category input[name="category_id"]').val();
     $.each($('input[name="category_illustration"]').files, function(i, file) {
         formData.append('category_illustration', file);
@@ -78,11 +77,37 @@ $("#edit_category").submit(function(e) {
         processData: false,
         contentType: false,
         success: function(data){
-            console.log(data);
-        },
-        error: function (data) {
-            console.log(data)
+            let status = statusclass = '';
+            if(data.actif) {
+                status = 'Actif';
+                statusclass = 'enabled';
+            } else {
+                status = 'Inactif';
+                statusclass = 'disabled';
+            }
+            $('#m_edit_category').modal('hide');
+            $('#' + id).empty().append(
+                '<td>' +
+                    '<a href="/admin/category/'+ id +'">' + data.title + '</a>' +
+                '</td>' +
+                '<td>' + data.description + '</td>' +
+                '<td><img src="' + data.illustration + '" class="thumbnail" alt="' + data.illustration.split(/[\\/]/).pop() +'"></td>' +
+                '<td class="'+ statusclass +'">'+ status +'</td>' +
+                '<td>' +
+                    '<button type="button" class="btn btn-outline-warning"><i class="far fa-edit"></i></button>' +
+                    '<button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>' +
+                '</td>'
+            )
         }
+    });
+});
+
+$('.btn-outline-danger').on('click', function(e){
+    e.preventDefault();
+    let id = $(this).closest('tr').prop('id');
+    $.get(window.location.origin + '/api/v1/category/' + id + '/delete', function(data) {
+        $('#m_delete_category h5.modal-title').empty().append('Supprimer "' + data.title + '" ?');
+        $('#m_delete_category').modal('toggle');
     });
 });
 
