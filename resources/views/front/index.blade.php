@@ -32,7 +32,9 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#contact">Contact</a>
+                <button type="button" class="button_contact" data-toggle="modal" data-target="#exampleModal">
+                    Contact
+                </button>
             </li>
         </ul>
     </div>
@@ -139,6 +141,25 @@
 </nav>
 
 {{--FOOTER--}}
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="contacts"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <script src="{{ asset('js/index.js') }}"></script>
