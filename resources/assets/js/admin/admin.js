@@ -105,13 +105,30 @@ $("#edit_category").submit(function(e) {
 $('.btn-outline-danger').on('click', function(e){
     e.preventDefault();
     let id = $(this).closest('tr').prop('id');
-    $.get(window.location.origin + '/api/v1/category/' + id + '/delete', function(data) {
+    $.get(window.location.origin + '/api/v1/category/' + id, function(data) {
         $('#m_delete_category h5.modal-title').empty().append('Supprimer "' + data.title + '" ?');
-        $('#m_delete_category').modal('toggle');
+        $('#m_delete_category').attr('data-id', id).modal('toggle');
     });
 });
 
+$('#m_delete_category .btn-danger').on('click', function() {
+    let $id = $('#m_delete_category').attr('data-id');
+    $.ajax({
+        type: "POST",
+        url: window.location.origin + '/admin/category/' + $id + '/delete',
+        data: {"id": $id},
+        success: function(data) {
+            console.log(data);
+        },
+        dataType: "json"
+    });
 
 
-
-// localhost:8000api/v1/category/1
+    /*$.post(window.location.origin + '/admin/category/' + $id + '/delete', function(data) {
+        console.log(data);
+        if(data === 'done') {
+            $('tr#' + $id).hide();
+            $('#m_delete_category').hide();
+        }
+    })*/
+});

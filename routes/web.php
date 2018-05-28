@@ -11,14 +11,15 @@ Route::get('/contact', function () {
 });
 
 Route::prefix('admin')->group(function () {
-	Route::get('categories', 'HomeController@categories');
-	Route::get('category/{id}', 'HomeController@category');
+	Route::get('categories', 'CategoryController@categories');
+	Route::get('category/{id}', 'CategoryController@category');
 });
 
-Route::post('/admin/categories', 'HomeController@postCategory');
-Route::post('/admin/category/{id}/item', 'HomeController@postItem');
-Route::get('/admin/categories/{id}/items', 'HomeController@items');
-Route::post('/admin/category/{id}', 'HomeController@editCategory');
+Route::post('/admin/categories', 'CategoryController@postCategory');
+Route::post('/admin/category/{id}/item', 'ItemController@postItem');
+Route::get('/admin/categories/{id}/items', 'ItemController@items');
+Route::post('/admin/category/{id}', 'CategoryController@editCategory');
+Route::post('/admin/category/{id}/delete', 'CategoryController@deleteCategory');
 
 Route::prefix('api/v1')->group(function() {
 	Route::get('categories', 'ApiController@categories');
