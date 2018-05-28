@@ -19,6 +19,18 @@ body {
       }
     }
   }
+
+  .button_contact {
+    background:none!important;
+    border:none;
+    cursor:pointer;
+    padding: 8px;
+    color: #333;
+    font-weight: 700;
+    line-height: 22.5px;
+    font-size: 15px;
+    font-family: "PT Sans", sans-serif;
+  }
 }
 
 #carousel {
@@ -117,18 +129,6 @@ body {
         height: 20vh;
         margin-top: 15vh;
       }
-    }
-
-    .button_contact {
-      background:none!important;
-      border:none;
-      padding:0!important;
-
-      /*optional*/
-      font-family:arial,sans-serif; /*input has OS specific font-family*/
-      color:#069;
-      text-decoration:underline;
-      cursor:pointer;
     }
 
     .col-md-3 {
