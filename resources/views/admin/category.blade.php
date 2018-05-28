@@ -2,19 +2,26 @@
 
 @section('content')
 
-    <h3>{{ $category->title }}</h3>
+    <div class="col-md-8 offset-md-2">
+        <h1>{{ $category->title }}</h1>
+        <h2>{{ $category->description }}</h2>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#m_new_item">
-        Nouvel objet
-    </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#m_new_item">
+            Nouvel objet
+        </button>
 
-    {{ dd($items) }}
+        <div class="align-images">
+            @if($items)
 
-    <div class="align-images">
-        @if($items)
-
-        @endif
+            @endif
+        </div>
     </div>
+
+
+
+    {{ dd($category) }}
+
+
 
     <div class="modal fade" id="m_new_item" tabindex="-1" role="dialog" aria-labelledby="m_new_item" aria-hidden="true">
         <div class="modal-dialog" role="document">

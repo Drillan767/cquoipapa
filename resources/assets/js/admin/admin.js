@@ -77,7 +77,8 @@ $("#edit_category").submit(function(e) {
         processData: false,
         contentType: false,
         success: function(data){
-            let status = statusclass = '';
+            let status = '';
+            let statusclass = '';
             if(data.actif) {
                 status = 'Actif';
                 statusclass = 'enabled';
