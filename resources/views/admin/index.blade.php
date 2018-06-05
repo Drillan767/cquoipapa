@@ -28,11 +28,11 @@
     </div>
 
     <!-- Latest Users -->
-    <div class="card">
+    <div class="card clients">
         <div class="card-header">
             <span class="card-title">Clients</span>
         </div>
-        <div class="panel-body clients">
+        <div class="panel-body">
             <table class="table table-striped table-hover">
                 <tr>
                     <th>Nom</th>

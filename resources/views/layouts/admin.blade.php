@@ -135,7 +135,7 @@
                         <span class="badge badge-secondary badge-pill">14</span>
                     </a>
                 </div>
-                <div class="card card-body bg-light">
+                <div class="card card-body bg-light disk">
                     <h4>Espace Disque</h4>
                     <div class="progress">
                         <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
