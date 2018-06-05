@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View;
 use App\Category;
+use App\User;
 use Illuminate\Http\JsonResponse;
 use App\Item;
 
@@ -25,7 +26,14 @@ class HomeController extends Controller {
 	 * @return Factory|View\View
 	 */
 	public function admin() {
-		return view('admin.index');
+	  $users = User::all();
+	  $categories = Category::count();
+	  $items = Item::count();
+		return view('admin.index', [
+		  'items' => $items,
+      'categories' => $categories,
+      'users' => $users
+    ]);
 	}
 
 	public function category($id) {

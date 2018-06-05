@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Administration</title>
+    <title>CkoiPapa - @yield('title')</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -16,7 +16,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -75,7 +74,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10">
-                <h1><i class="fas fa-cog"></i> Tableau de bord <small>Dashboard</small></h1>
+                <h1><i class="fas fa-cog"></i> Tableau de bord</h1>
             </div>
             <div class="col-md-2">
                 <div class="dropdown create">
@@ -111,35 +110,34 @@
                             <i class="fas fa-cog"></i>
                             Tableau de bord
                         </div>
-                        <span class="badge badge-secondary badge-pill">14</span>
                     </a>
                     <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                         <div class="list-icon">
                             <i class="fas fa-user"></i>
                             Clients
                         </div>
-                        <span class="badge badge-secondary badge-pill">14</span>
+                        <span class="badge badge-secondary badge-pill">{{ $users }}</span>
                     </a>
                     <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                         <div class="list-icon">
                             <i class="fas fa-th-list"></i>
                             Catégories
                         </div>
-                        <span class="badge badge-secondary badge-pill">14</span>
+                        <span class="badge badge-secondary badge-pill">{{ $categories }}</span>
                     </a>
                     <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
                         <div class="list-icon">
                             <i class="fas fa-cubes"></i>
                             Objets
                         </div>
-                        <span class="badge badge-secondary badge-pill">14</span>
+                        <span class="badge badge-secondary badge-pill">{{ $items }}</span>
                     </a>
                 </div>
                 <div class="card card-body bg-light disk">
                     <h4>Espace Disque</h4>
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                            60%
+                        <div class="progress-bar" role="progressbar" aria-valuenow="{{ $disk }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ $disk }}%;">
+                            {{ $disk }}%
                         </div>
                     </div>
                 </div>

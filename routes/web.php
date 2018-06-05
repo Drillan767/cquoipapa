@@ -1,5 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\View;
+use App\Category;
+use App\User;
+use App\Item;
+
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
@@ -24,4 +29,22 @@ Route::post('/admin/category/{id}/delete', 'CategoryController@deleteCategory');
 Route::prefix('api/v1')->group(function() {
 	Route::get('categories', 'ApiController@categories');
 	Route::get('category/{id}', 'ApiController@getCategory');
+});
+
+
+// Sends values to the layout.
+View::composer('layouts.admin', function($view) {
+
+  $categories = Category::count();
+  $users = User::count();
+  $items = Item::count();
+  $disk = 100 - (disk_free_space('/') / disk_total_space('/') * 100);
+
+  $view->with([
+    'categories' => $categories,
+    'users' => $users,
+    'items' => $items,
+    'disk' => round($disk, 2)
+  ]);
+
 });
