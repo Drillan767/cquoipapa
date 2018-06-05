@@ -8,9 +8,21 @@
 @import '~jquery-ui/themes/base/selectable.css';
 @import "variables";
 
+#header {
+  margin-top: 80px;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.overview {
+  padding: 35px;
+}
+
+.clients {
+  padding: 15px;
 }
 
 .thumbnail {
