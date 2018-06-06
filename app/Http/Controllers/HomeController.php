@@ -52,13 +52,4 @@ class HomeController extends Controller {
 		$path = $file->storeAs("public/category/$category_id/items", $filename);
 		return '/' . str_replace('public', 'storage', $path);
 	}
-
-	/*
-	 Client != utilisateur
-	 Ne peut pas se connecter sur le site
-	 Est créé à la main
-	 Doit avoir un id / mdp / rôle
-	 Hérite des catégories / objets
-	 A une colonne qui compte ses appels à l'api
-	 */
 }
