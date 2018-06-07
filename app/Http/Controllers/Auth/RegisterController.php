@@ -75,7 +75,8 @@ class RegisterController extends Controller {
       'name' => $data['name'],
       'email' => $data['email'],
       'token' => $token,
-      'role' => $role,
+      'roles' => $role,
+      'nb_api_call' => 0,
       'password' => Hash::make($data['password']),
     ]);
   }
