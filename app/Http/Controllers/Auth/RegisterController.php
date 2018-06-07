@@ -59,11 +59,24 @@ class RegisterController extends Controller {
    * @return \App\User
    */
   protected function create(array $data) {
+
+  	$role = '';
+  	$token = '';
+
+  	if(isset($data['is-admin'])) {
+  		$role = 'admin';
+	  } else {
+  		$role = 'client';
+  		$token = str_random(20);
+	  }
+
+
     return User::create([
       'name' => $data['name'],
       'email' => $data['email'],
+      'token' => $token,
+      'role' => $role,
       'password' => Hash::make($data['password']),
-      'roles' => 'admin'
     ]);
   }
 }

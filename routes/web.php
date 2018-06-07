@@ -29,6 +29,7 @@ Route::post('/admin/category/{id}/delete', 'CategoryController@deleteCategory');
 Route::prefix('api/v1')->group(function() {
 	Route::get('categories', 'ApiController@categories');
 	Route::get('category/{id}', 'ApiController@getCategory');
+	Route::post('user/login', 'ApiController@login');
 });
 
 

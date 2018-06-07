@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration {
 			$table->string('password');
 			$table->string('roles');
 			$table->integer('nb_api_call');
+			$table->string('token');
 			$table->rememberToken();
 		});
 	}
