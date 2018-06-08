@@ -7,6 +7,7 @@ use Illuminate\View;
 use Illuminate\Contracts\View\Factory;
 use App\Category;
 use App\Item;
+use App\User;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller {
@@ -16,6 +17,8 @@ class CategoryController extends Controller {
 	 */
 	public function categories() {
 		$categories = Category::all();
+//		$user = User::find(1);
+//		$user->userCategories()->attach(1);
 		return view('admin.categories', ['categories' => $categories]);
 	}
 

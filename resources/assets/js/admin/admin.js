@@ -23,7 +23,7 @@ $("#new_category").submit(function(e) {
         processData: false,
         contentType: false,
         success: function(data){
-            console.log('truc');
+            console.log(data);
             // @TODO: Append data au reste du tableau
         }
     });

@@ -21,8 +21,8 @@ class ApiController extends Controller {
 	}
 
 	public function categories(Request $request) {
-		$categories = User::find($request->id)->category;
-		return response()->json($categories);
+		$user = User::find($request->id);
+		return response()->json($user->userCategories()->get());
 	}
 
 	public function getCategory($id) {
