@@ -13,16 +13,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-	/**
-	 * @param $file
-	 * @param $category_id
-	 * @return string
-	 */
-	private function uploadFile($file, $category_id) {
-		$filename = $file->getClientOriginalName();
-		$path = $file->storeAs("public/category/$category_id", $filename);
-		return '/' . str_replace('public', 'storage', $path);
-	}
+
 
 	private function updateFile($file, $category_id) {
 		$category = Category::find($category_id);

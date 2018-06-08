@@ -121,7 +121,7 @@
                             <input type="file" class="form-control-file" name="category_illustration">
                         </div>
                         <div class="form-check">
-                            <input type="checkbox" name="category_enabled" class="form-check-input" {{ $category->actif ? 'checked="checked"': '' }}>
+                            <input type="checkbox" name="category_enabled" class="form-check-input">
                             <label class="form-check-label" for="category_enabled">Actif</label>
                         </div>
                     </div>

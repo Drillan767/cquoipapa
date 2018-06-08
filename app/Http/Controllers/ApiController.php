@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Category;
+use App\User;
 
 class ApiController extends Controller {
 
@@ -19,8 +20,8 @@ class ApiController extends Controller {
 		}
 	}
 
-	public function categories() {
-		$categories = Category::all();
+	public function categories(Request $request) {
+		$categories = User::find($request->id)->category;
 		return response()->json($categories);
 	}
 

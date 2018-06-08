@@ -82,4 +82,15 @@ class CategoryController extends Controller {
 
 		return response()->json('done');
 	}
+
+	/**
+	 * @param $file
+	 * @param $category_id
+	 * @return string
+	 */
+	private function uploadFile($file, $category_id) {
+		$filename = $file->getClientOriginalName();
+		$path = $file->storeAs("public/category/$category_id", $filename);
+		return '/' . str_replace('public', 'storage', $path);
+	}
 }
