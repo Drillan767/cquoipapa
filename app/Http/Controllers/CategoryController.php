@@ -40,7 +40,7 @@ class CategoryController extends Controller {
 		$category = new Category();
 		$category->title = $request->category_title;
 		$category->description = $request->category_description;
-		$category->actif = isset($request->category_enabled) ? true : false;
+		$category->enabled = isset($request->category_enabled) ? true : false;
 		$category->illustration = $this->uploadFile($request->category_illustration, $category->id);
 		$category->save();
 
@@ -61,8 +61,8 @@ class CategoryController extends Controller {
 			$data['description'] = $request->category_description;
 		}
 
-		if($request->actif != $checkbox) {
-			$data['actif'] = $checkbox;
+		if($request->enabled != $checkbox) {
+			$data['enabled'] = $checkbox;
 		}
 
 		if(isset($request->category_illustration)) {

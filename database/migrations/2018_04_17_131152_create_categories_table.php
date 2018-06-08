@@ -16,7 +16,8 @@ class CreateCategoriesTable extends Migration {
 			$table->string('title');
       $table->string('description');
       $table->string('illustration');
-      $table->boolean('actif');
+      $table->boolean('enabled');
+      $table->integer('user_id')->nullable();
 		});
 	}
 

@@ -27,5 +27,9 @@ class User extends Authenticatable {
 		'password', 'remember_token',
 	];
 
+	public function category() {
+		return $this->hasMany('App\Category');
+	}
+
 	public $timestamps = false;
 }
