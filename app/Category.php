@@ -13,4 +13,8 @@ class category extends Model {
 	public function item() {
 		return $this->hasMany('App\Item');
 	}
+
+	public function user() {
+		return $this->belongsToMany('App\User', 'category_user', 'category_id', 'user_id');
+	}
 }
