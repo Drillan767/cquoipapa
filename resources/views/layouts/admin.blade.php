@@ -74,7 +74,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10">
-                <h1><i class="fas fa-cog"></i> Tableau de bord</h1>
+                <h1><i class="fas fa-cog"></i> {{ $url }}</h1>
             </div>
             <div class="col-md-2">
                 <div class="dropdown create">

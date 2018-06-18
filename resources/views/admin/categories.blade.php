@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="col-md-8 offset-md-2">
+    <div class="col-md-12">
 
         <div class="add">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#m_new_category">

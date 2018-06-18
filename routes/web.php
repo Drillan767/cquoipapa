@@ -9,15 +9,17 @@ Auth::routes();
 
 Route::get('/', 'HomeController@index');
 
-Route::get('/admin', 'HomeController@admin')->middleware('auth');
+Route::get('/admin', 'HomeController@admin')->middleware('auth')->name('admin');
 
 Route::get('/contact', function () {
     return view('contact');
 });
 
 Route::prefix('admin')->group(function () {
-	Route::get('categories', 'CategoryController@categories');
+	Route::get('categories', 'CategoryController@categories')->name('categories');
 	Route::get('category/{id}', 'CategoryController@category');
+	Route::get('/clients', 'ClientController@index')->name('clients');
+
 });
 
 Route::post('/admin/categories', 'CategoryController@postCategory');
@@ -36,6 +38,13 @@ Route::prefix('api/v1')->group(function() {
 // Sends values to the layout.
 View::composer('layouts.admin', function($view) {
 
+  $locations = [
+    'admin' => 'Tableau de bord',
+    'categories' => 'Catégories',
+    'items' => 'Objets',
+    'clients' => 'Clients'
+  ];
+
   $categories = Category::count();
   $users = User::count();
   $items = Item::count();
@@ -45,7 +54,8 @@ View::composer('layouts.admin', function($view) {
     'categories' => $categories,
     'users' => $users,
     'items' => $items,
-    'disk' => round($disk, 2)
+    'disk' => round($disk, 2),
+    'url' => $locations[basename(url()->current())]
   ]);
 
 });

@@ -44,10 +44,14 @@ class CategoryController extends Controller {
 		$category->title = $request->category_title;
 		$category->description = $request->category_description;
 		$category->enabled = isset($request->category_enabled) ? true : false;
-		$category->illustration = $this->uploadFile($request->category_illustration, $category->id);
+		$category->illustration = '';
 		$category->save();
 
-		return response()->json(Category::all());
+		$category->illustration = $this->uploadFile($request->category_illustration, $category->id);
+    $category->save();
+
+		return response()->json($category);
+
 	}
 
 	public function editCategory(Request $request, $id) {

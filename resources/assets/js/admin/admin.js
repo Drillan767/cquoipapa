@@ -24,7 +24,27 @@ $("#new_category").submit(function(e) {
         contentType: false,
         success: function(data){
             console.log(data);
-            // @TODO: Append data au reste du tableau
+            $('#m_new_category').modal('hide');
+            $('table.table tbody').append(
+                '<tr id="' + data.id +'">' +
+                '<td><a href="/admin/data/'+ data.id +'">'+ data.title +'</a></td>' +
+                '<td>' + data.description + '</td>' +
+                '<td><img src="' + data.illustration + '" class="thumbnail" alt="' + data.illustration.split(/[\\/]/).pop() + '"/></td>' +
+                '<td><span></span></td>' +
+                '<td>' +
+                    '<button type="button" class="btn btn-outline-warning"><i class="far fa-edit"></i></button>' +
+                    '<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#m_delete_category">' +
+                        '<i class="fas fa-trash"></i>' +
+                    '</button>' +
+                '</td>' +
+                '</tr>'
+            );
+
+            if(data.enabled === 1) {
+                $('tr#'+ data.id +' td span').addClass('enabled').append('Actif');
+            } else {
+                $('td span').addClass('disabled').append('Inactif');
+            }
         }
     });
 });
@@ -119,7 +139,10 @@ $('#m_delete_category .btn-danger').on('click', function() {
         url: window.location.origin + '/admin/category/' + $id + '/delete',
         data: {"id": $id},
         success: function(data) {
-            console.log(data);
+            if(data === 'done') {
+                $('#m_delete_category').modal('hide');
+                $(`tr#${$id}`).remove();
+            }
         },
         dataType: "json"
     });
