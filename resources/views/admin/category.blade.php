@@ -17,12 +17,6 @@
         </div>
     </div>
 
-
-
-    {{ dd($category) }}
-
-
-
     <div class="modal fade" id="m_new_item" tabindex="-1" role="dialog" aria-labelledby="m_new_item" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">

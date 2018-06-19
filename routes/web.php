@@ -38,20 +38,28 @@ Route::prefix('api/v1')->group(function() {
 // Sends values to the layout.
 View::composer('layouts.admin', function($view) {
 
+	$path = parse_url(url()->current())['path'];
+
   $locations = [
-    'admin' => [
+    '/admin' => [
     	'title' => 'Tableau de bord', 'fa' => 'cog'
     ],
-    'categories' => [
+    '/admin/categories' => [
     	'title' => 'Catégories', 'fa' => 'list'
     ],
-    'items' => [
+    '/admin/items' => [
 	     'title' => 'Objets', 'fa' => 'cubes'
 	  ],
     'clients' => [
     	'title' => 'Clients', 'fa' => 'user'
     ]
   ];
+
+  if(in_array($path, $locations)) {
+	  $url = $locations[$path];
+  } elseif(preg_match('/\/admin\/category\/[0-9]+$/', $path)) {
+	  $url = $locations['/admin/categories'];
+  }
 
   $categories = Category::count();
   $users = User::count();
@@ -63,7 +71,7 @@ View::composer('layouts.admin', function($view) {
     'users' => $users,
     'items' => $items,
     'disk' => round($disk, 2),
-    'url' => $locations[basename(url()->current())]
+    'url' => $url
   ]);
 
 });
