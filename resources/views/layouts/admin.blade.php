@@ -74,7 +74,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10">
-                <h1><i class="fas fa-cog"></i> {{ $url }}</h1>
+                <h1><i class="fas fa-{{ $url['fa'] }}"></i> {{ $url['title'] }}</h1>
             </div>
             <div class="col-md-2">
                 <div class="dropdown create">
@@ -105,27 +105,27 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action active d-flex justify-content-between align-items-center">
+                    <a href="/admin" class="list-group-item list-group-item-action @if(basename(url()->current()) == 'admin')active @endif d-flex justify-content-between align-items-center">
                         <div class="list-icon">
                             <i class="fas fa-cog"></i>
                             Tableau de bord
                         </div>
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <a href="/admin/clients" class="list-group-item list-group-item-action @if(basename(url()->current()) == 'clients')active @endif d-flex justify-content-between align-items-center">
                         <div class="list-icon">
                             <i class="fas fa-user"></i>
                             Clients
                         </div>
                         <span class="badge badge-secondary badge-pill">{{ $users }}</span>
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <a href="/admin/categories" class="list-group-item list-group-item-action @if(basename(url()->current()) == 'categories')active @endif d-flex justify-content-between align-items-center">
                         <div class="list-icon">
                             <i class="fas fa-th-list"></i>
                             Catégories
                         </div>
                         <span class="badge badge-secondary badge-pill">{{ $categories }}</span>
                     </a>
-                    <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                    <a href="/admin/objets" class="list-group-item list-group-item-action @if(basename(url()->current()) == 'items')active @endif d-flex justify-content-between align-items-center">
                         <div class="list-icon">
                             <i class="fas fa-cubes"></i>
                             Objets

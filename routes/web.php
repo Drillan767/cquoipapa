@@ -39,10 +39,18 @@ Route::prefix('api/v1')->group(function() {
 View::composer('layouts.admin', function($view) {
 
   $locations = [
-    'admin' => 'Tableau de bord',
-    'categories' => 'Catégories',
-    'items' => 'Objets',
-    'clients' => 'Clients'
+    'admin' => [
+    	'title' => 'Tableau de bord', 'fa' => 'cog'
+    ],
+    'categories' => [
+    	'title' => 'Catégories', 'fa' => 'list'
+    ],
+    'items' => [
+	     'title' => 'Objets', 'fa' => 'cubes'
+	  ],
+    'clients' => [
+    	'title' => 'Clients', 'fa' => 'user'
+    ]
   ];
 
   $categories = Category::count();
