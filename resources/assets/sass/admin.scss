@@ -60,6 +60,11 @@
   .item {
     margin-bottom: 35px;
 
+    h3:hover {
+      cursor: pointer;
+      color: #007bff99;
+    }
+
     .align-images img {
       max-width: 100%;
     }

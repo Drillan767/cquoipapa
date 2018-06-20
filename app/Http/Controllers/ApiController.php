@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Category;
+use App\Item;
 use App\User;
 
 class ApiController extends Controller {
@@ -28,4 +29,8 @@ class ApiController extends Controller {
 	public function getCategory($id) {
 		return response()->json(Category::find($id));
 	}
+
+	public function items(Request $request) {
+	  return response()->json(Item::find($request->id));
+  }
 }

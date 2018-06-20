@@ -8,10 +8,10 @@ $.ajaxSetup({
     }
 });
 
-$("#new_category").submit(function(e) {
+$("#new_category").submit(function (e) {
     let formData = new FormData(this);
 
-    $.each($('#category_illustration').files, function(i, file) {
+    $.each($('#category_illustration').files, function (i, file) {
         formData.append('category_illustration', file);
     });
     e.preventDefault();
@@ -23,26 +23,25 @@ $("#new_category").submit(function(e) {
         dataType: "json",
         processData: false,
         contentType: false,
-        success: function(data){
-            console.log(data);
+        success: function (data) {
             $('#m_new_category').modal('hide');
             $('table.table tbody').append(
-                '<tr id="' + data.id +'">' +
-                '<td><a href="/admin/category/'+ data.id +'">'+ data.title +'</a></td>' +
+                '<tr id="' + data.id + '">' +
+                '<td><a href="/admin/category/' + data.id + '">' + data.title + '</a></td>' +
                 '<td>' + data.description + '</td>' +
                 '<td><img src="' + data.illustration + '" class="thumbnail" alt="' + data.illustration.split(/[\\/]/).pop() + '"/></td>' +
                 '<td><span></span></td>' +
                 '<td>' +
-                    '<button type="button" class="btn btn-outline-warning"><i class="far fa-edit"></i></button>' +
-                    '<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#m_delete_category">' +
-                        '<i class="fas fa-trash"></i>' +
-                    '</button>' +
+                '<button type="button" class="btn btn-outline-warning"><i class="far fa-edit"></i></button>' +
+                '<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#m_delete_category">' +
+                '<i class="fas fa-trash"></i>' +
+                '</button>' +
                 '</td>' +
                 '</tr>'
             );
 
-            if(data.enabled === 1) {
-                $('tr#'+ data.id +' td span').addClass('enabled').append('Actif');
+            if (data.enabled === 1) {
+                $('tr#' + data.id + ' td span').addClass('enabled').append('Actif');
             } else {
                 $('td span').addClass('disabled').append('Inactif');
             }
@@ -50,9 +49,9 @@ $("#new_category").submit(function(e) {
     });
 });
 
-$("#new_item").submit(function(e) {
+$("#new_item").submit(function (e) {
     let formData = new FormData(this);
-    $.each($('#item_illustration').files, function(i, file) {
+    $.each($('#item_illustration').files, function (i, file) {
         formData.append('category_illustration[]', file);
     });
     e.preventDefault();
@@ -64,23 +63,22 @@ $("#new_item").submit(function(e) {
         dataType: "json",
         processData: false,
         contentType: false,
-        success: function(data){
-            console.log(data);
+        success: function (data) {
             $('#m_new_item').modal('hide');
             $('.items').append(
                 '<div class="item">' +
-                    '<h3>' + data.title + '</h3>' +
-                    '<p>'+ data.description +'</p>' +
-                    '<div class="align-images row"></div>' +
+                '<h3 data-id="' + data.id + '">' + data.title + '</h3>' +
+                '<p>' + data.description + '</p>' +
+                '<div class="align-images row"></div>' +
                 '</div>'
             );
 
-            $.each(data.image, function() {
+            $.each(data.image, function (index, image) {
                 $('.align-images').append(
                     '<div class="col-sm-1">' +
-                        '<a data-fancybox="gallery" href="' + this.path + '">' +
-                            '<img src="' + this.path + '">' +
-                        '</a>' +
+                    '<a data-fancybox="gallery" href="' + image.path + '">' +
+                    '<img src="' + image.path + '">' +
+                    '</a>' +
                     '</div>'
                 );
             })
@@ -88,10 +86,10 @@ $("#new_item").submit(function(e) {
     });
 });
 
-$('.btn-outline-warning').on('click', function(e){
+$('.btn-outline-warning').on('click', function (e) {
     e.preventDefault();
     let id = $(this).closest('tr').prop('id');
-    $.get(window.location.origin + '/api/v1/category/' + id, function(data) {
+    $.get(window.location.origin + '/api/v1/category/' + id, function (data) {
         $('#m_edit_category h5.modal-title').empty().append('Éditer "' + data.title + '"');
         $('#m_edit_category input[name="category_id"]').val(data.id);
         $('#m_edit_category input[name="category_title"]').val(data.title);
@@ -100,10 +98,10 @@ $('.btn-outline-warning').on('click', function(e){
     });
 });
 
-$("#edit_category").submit(function(e) {
+$("#edit_category").submit(function (e) {
     let formData = new FormData(this);
     let id = $('#m_edit_category input[name="category_id"]').val();
-    $.each($('input[name="category_illustration"]').files, function(i, file) {
+    $.each($('input[name="category_illustration"]').files, function (i, file) {
         formData.append('category_illustration', file);
     });
     e.preventDefault();
@@ -115,10 +113,10 @@ $("#edit_category").submit(function(e) {
         dataType: 'json',
         processData: false,
         contentType: false,
-        success: function(data){
+        success: function (data) {
             let status = '';
             let statusclass = '';
-            if(data.actif) {
+            if (data.enabled) {
                 status = 'Actif';
                 statusclass = 'enabled';
             } else {
@@ -128,39 +126,119 @@ $("#edit_category").submit(function(e) {
             $('#m_edit_category').modal('hide');
             $('#' + id).empty().append(
                 '<td>' +
-                    '<a href="/admin/category/'+ id +'">' + data.title + '</a>' +
+                '<a href="/admin/category/' + id + '">' + data.title + '</a>' +
                 '</td>' +
                 '<td>' + data.description + '</td>' +
-                '<td><img src="' + data.illustration + '" class="thumbnail" alt="' + data.illustration.split(/[\\/]/).pop() +'"></td>' +
-                '<td class="'+ statusclass +'">'+ status +'</td>' +
+                '<td><img src="' + data.illustration + '" class="thumbnail" alt="' + data.illustration.split(/[\\/]/).pop() + '"></td>' +
+                '<td class="' + statusclass + '">' + status + '</td>' +
                 '<td>' +
-                    '<button type="button" class="btn btn-outline-warning"><i class="far fa-edit"></i></button>' +
-                    '<button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>' +
+                '<button type="button" class="btn btn-outline-warning"><i class="far fa-edit"></i></button>' +
+                '<button type="button" class="btn btn-outline-danger"><i class="fas fa-trash"></i></button>' +
                 '</td>'
             )
         }
     });
 });
 
-$('.btn-outline-danger').on('click', function(e){
+$('.btn-outline-danger').on('click', function (e) {
     e.preventDefault();
     let id = $(this).closest('tr').prop('id');
-    $.get(window.location.origin + '/api/v1/category/' + id, function(data) {
+    $.get(window.location.origin + '/api/v1/category/' + id, function (data) {
         $('#m_delete_category h5.modal-title').empty().append('Supprimer "' + data.title + '" ?');
         $('#m_delete_category').attr('data-id', id).modal('toggle');
     });
 });
 
-$('#m_delete_category .btn-danger').on('click', function() {
+$('#m_delete_category .btn-danger').on('click', function () {
     let $id = $('#m_delete_category').attr('data-id');
     $.ajax({
         type: "POST",
         url: window.location.origin + '/admin/category/' + $id + '/delete',
         data: {"id": $id},
-        success: function(data) {
-            if(data === 'done') {
+        success: function (data) {
+            if (data === 'done') {
                 $('#m_delete_category').modal('hide');
                 $(`tr#${$id}`).remove();
+            }
+        },
+        dataType: "json"
+    });
+});
+
+$('.item h3').on('click', function () {
+    let $id = $(this).attr('data-id');
+    $.ajax({
+        type: "POST",
+        url: window.location.origin + '/api/v1/items',
+        data: {"id": $id},
+        success: function (data) {
+            $('#edit_item').attr('data-id', data.id);
+            $('#m_edit_item h5.modal-title').empty().append('Éditer "' + data.title + '"');
+            $('#m_edit_item input[name="item_title"]').val(data.title);
+
+            if($('#m_edit_item a[data-fancybox="gallery"]').length === 0) {
+                $('<a data-fancybox="gallery" href="' + data.illustration + '">Illustration</a>').insertAfter('#m_edit_item input[name="item_illustration"]');
+            }
+            $('#m_edit_item textarea[name="item_description"]').val(data.description);
+            $('#m_edit_item').modal();
+        },
+        dataType: "json"
+    });
+
+});
+
+// j'en étais là
+
+$("#edit_item").submit(function (e) {
+    let formData = new FormData(this);
+    let id = $('#edit_item').attr('data-id');
+    $.each($('input[name="item_images"]').files, function (i, file) {
+        formData.append('item_images', file);
+    });
+    e.preventDefault();
+
+    $.ajax({
+        type: "POST",
+        url: window.location.origin + '/admin/category/' + id,
+        data: formData,
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            console.log(data);
+        }
+    });
+});
+
+$('#m_edit_item .btn-danger').on('click', function() {
+    $('#m_edit_item').modal('hide');
+    let $id = $('#m_edit_item #edit_item').attr('data-id');
+    $.ajax({
+        type: "POST",
+        url: window.location.origin + '/api/v1/items',
+        data: {"id": $id},
+        success: function (data) {
+            $('#m_delete_item h5.modal-title').empty().append('Supprimer "' + data.title + '" ?');
+            $('#m_delete_item .modal-body').empty().append('<p>La suppression de cet objet entrainera la suppression de toutes ' +
+                'les images qui lui sont liées.</p>')
+                .append('<p>Continuer ?</p>');
+            $('#m_delete_item').attr('data-id', data.id).modal();
+        },
+        dataType: "json"
+    });
+    $('#m_delete_item').modal();
+});
+
+$('#m_delete_item .btn-danger').on('click', function () {
+    let $id = $('#m_delete_item').attr('data-id');
+    $.ajax({
+        type: "POST",
+        url: window.location.origin + '/admin/item/delete',
+        data: {"id": $id},
+        success: function (data) {
+            if (data === 'done') {
+                $('#m_delete_item').modal('hide');
+                $(`div.item#${$id}`).remove();
             }
         },
         dataType: "json"
