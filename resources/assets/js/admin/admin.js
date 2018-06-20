@@ -77,9 +77,11 @@ $("#new_item").submit(function(e) {
 
             $.each(data.image, function() {
                 $('.align-images').append(
-                    '<a data-fancybox="gallery" href="' + this.path + '">' +
-                        '<img src="' + this.path + '">' +
-                    '</a>'
+                    '<div class="col-sm-1">' +
+                        '<a data-fancybox="gallery" href="' + this.path + '">' +
+                            '<img src="' + this.path + '">' +
+                        '</a>' +
+                    '</div>'
                 );
             })
         }
