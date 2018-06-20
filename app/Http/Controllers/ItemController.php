@@ -55,6 +55,12 @@ class ItemController extends Controller {
 
 	}
 
+	public function deleteItem(Request $request) {
+	  Item::find($request->id)->delete();
+
+	  return response()->json('done');
+  }
+
 	/**
 	 * @param $file
 	 * @param $category_id
