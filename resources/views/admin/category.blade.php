@@ -1,8 +1,10 @@
 @extends('layouts.admin')
 
+@section('title', $category->title)
+
 @section('content')
 
-    <div class="col-md-8 offset-md-2">
+    <div class="col-md-12">
         <h1>{{ $category->title }}</h1>
         <h2>{{ $category->description }}</h2>
 
@@ -10,9 +12,25 @@
             Nouvel objet
         </button>
 
-        <div class="align-images">
+        <div class="items">
             @if($items)
+                @foreach($items as $item)
+                    <div class="item">
+                        <h3>{{ $item->title }}</h3>
+                        <p>{{ $item->description }}</p>
 
+                        <div class="align-images row">
+                            @foreach($item->image as $image)
+                                <div class="col-sm-1">
+                                    <a data-fancybox="gallery" href="{{ $image->path }}">
+                                        <img src="{{ $image->path }}">
+                                    </a>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                @endforeach
             @endif
         </div>
     </div>
@@ -30,15 +48,19 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="item_title">Titre</label>
-                            <input type="text" class="form-control" id="item_title" placeholder="Titre" name="item_title">
+                            <input type="text" class="form-control" id="item_title" placeholder="Titre" name="item_title" required autofocus>
+                        </div>
+                        <div class="form-group">
+                            <label for="item_illustration">Illustration</label>
+                            <input type="file" class="form-control-file" id="item_illustration" name="item_illustration" required>
                         </div>
                         <div class="form-group">
                             <label for="item_description">Description</label>
                             <textarea class="form-control" name="item_description" id="item_description" rows="3" placeholder="Description..."></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="item_illustration">Illustration</label>
-                            <input type="file" class="form-control-file" name="item_illustration[]" id="item_illustration" multiple="multiple">
+                            <label for="item_illustration">Images</label>
+                            <input type="file" class="form-control-file" name="item_images[]" id="item_illustration" multiple="multiple" required>
                         </div>
                     </div>
                     <div class="modal-footer">

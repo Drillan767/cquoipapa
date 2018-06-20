@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model {
 
 	public $timestamps = false;
-	protected $fillable = ['title', 'description', 'category_id'];
+	protected $fillable = ['title', 'description', 'category_id', 'illustration'];
 
 	public function image() {
 		return $this->hasMany('App\Image');

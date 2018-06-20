@@ -45,8 +45,13 @@ class RegisterController extends Controller {
    * @return \Illuminate\Contracts\Validation\Validator
    */
   protected function validator(array $data) {
+
+//    dd($data);
+
     return Validator::make($data, [
-      'name' => 'required|string|max:255',
+      'first_name' => 'required|string|max:255',
+      'last_name' => 'required|string|max:255',
+      'phone' => 'required|string|max:255',
       'email' => 'required|string|email|max:255|unique:users',
       'password' => 'required|string|min:6|confirmed',
     ]);
@@ -70,10 +75,14 @@ class RegisterController extends Controller {
   		$token = str_random(20);
 	  }
 
+//	  dd($data['first_name']);
+
 
     return User::create([
-      'name' => $data['name'],
       'email' => $data['email'],
+      'first_name' => $data['first_name'],
+      'last_name' => $data['last_name'],
+      'phone' => $data['phone'],
       'token' => $token,
       'roles' => $role,
       'nb_api_call' => 0,

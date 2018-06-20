@@ -1,4 +1,5 @@
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+import '@fancyapps/fancybox/dist/jquery.fancybox.min';
 import 'jquery-ui/ui/core';
 
 $.ajaxSetup({
@@ -27,7 +28,7 @@ $("#new_category").submit(function(e) {
             $('#m_new_category').modal('hide');
             $('table.table tbody').append(
                 '<tr id="' + data.id +'">' +
-                '<td><a href="/admin/data/'+ data.id +'">'+ data.title +'</a></td>' +
+                '<td><a href="/admin/category/'+ data.id +'">'+ data.title +'</a></td>' +
                 '<td>' + data.description + '</td>' +
                 '<td><img src="' + data.illustration + '" class="thumbnail" alt="' + data.illustration.split(/[\\/]/).pop() + '"/></td>' +
                 '<td><span></span></td>' +
@@ -65,6 +66,22 @@ $("#new_item").submit(function(e) {
         contentType: false,
         success: function(data){
             console.log(data);
+            $('#m_new_item').modal('hide');
+            $('.items').append(
+                '<div class="item">' +
+                    '<h3>' + data.title + '</h3>' +
+                    '<p>'+ data.description +'</p>' +
+                    '<div class="align-images row"></div>' +
+                '</div>'
+            );
+
+            $.each(data.image, function() {
+                $('.align-images').append(
+                    '<a data-fancybox="gallery" href="' + this.path + '">' +
+                        '<img src="' + this.path + '">' +
+                    '</a>'
+                );
+            })
         }
     });
 });
@@ -146,13 +163,4 @@ $('#m_delete_category .btn-danger').on('click', function() {
         },
         dataType: "json"
     });
-
-
-    /*$.post(window.location.origin + '/admin/category/' + $id + '/delete', function(data) {
-        console.log(data);
-        if(data === 'done') {
-            $('tr#' + $id).hide();
-            $('#m_delete_category').hide();
-        }
-    })*/
 });

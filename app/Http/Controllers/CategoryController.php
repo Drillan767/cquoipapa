@@ -25,11 +25,6 @@ class CategoryController extends Controller {
 	public function category($id) {
 		$category = Category::find($id);
 		$item = Category::find($id)->item;
-		$category->items = $item;
-
-		foreach($category->items as $item) {
-			$item->images = Item::find($item->id)->image();
-		}
 
 		return view('admin.category', ['category' => $category, 'items' => $item]);
 	}

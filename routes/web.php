@@ -50,12 +50,14 @@ View::composer('layouts.admin', function($view) {
     '/admin/items' => [
 	     'title' => 'Objets', 'fa' => 'cubes'
 	  ],
-    'clients' => [
+    '/admin/clients' => [
     	'title' => 'Clients', 'fa' => 'user'
     ]
   ];
 
-  if(in_array($path, $locations)) {
+//  dd($locations[$path]);
+
+  if(array_key_exists($path, $locations)) {
 	  $url = $locations[$path];
   } elseif(preg_match('/\/admin\/category\/[0-9]+$/', $path)) {
 	  $url = $locations['/admin/categories'];

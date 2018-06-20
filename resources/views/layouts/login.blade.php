@@ -16,7 +16,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body id="login">
 <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
@@ -29,7 +28,7 @@
 <section id="breadcrumb">
     <div class="container">
         <ol class="breadcrumb">
-            <li class="active">Connexion</li>
+            <li class="active">Administration</li>
         </ol>
     </div>
 </section>

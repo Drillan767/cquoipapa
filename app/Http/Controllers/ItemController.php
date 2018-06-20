@@ -32,15 +32,21 @@ class ItemController extends Controller {
 		$category->item()->create([
 			'title' => $request->item_title,
 			'description' => $request->item_description,
+      'illustration' => ''
 		]);
 
 		$item = Item::find(Item::max('id'));
 
-		foreach($request->item_illustration as $image) {
+		$item->illustration = $this->uploadFile($request->item_illustration, $id);
+		$item->save();
+
+		foreach($request->item_images as $image) {
 			$item->image()->create([
-				'path' => $this->uploadItem($image, $category->id)
+				'path' => $this->uploadItem($image, $item->id, $category->id)
 			]);
 		}
+
+		$item->images = $item->image;
 
 		return response()->json($item);
 	}
@@ -54,9 +60,15 @@ class ItemController extends Controller {
 	 * @param $category_id
 	 * @return string
 	 */
-	private function uploadItem($file, $category_id) {
+	private function uploadItem($file, $item_id, $category_id) {
 		$filename = $file->getClientOriginalName();
-		$path = $file->storeAs("public/category/$category_id/items", $filename);
+		$path = $file->storeAs("public/category/$category_id/items/$item_id/images", $filename);
 		return '/' . str_replace('public', 'storage', $path);
 	}
+
+  private function uploadFile($file, $category_id) {
+    $filename = $file->getClientOriginalName();
+    $path = $file->storeAs("public/category/$category_id/items", $filename);
+    return '/' . str_replace('public', 'storage', $path);
+  }
 }
