@@ -89,15 +89,15 @@
                         </div>
                         <div class="form-group">
                             <label for="item_illustration">Illustration</label>
-                            <input type="file" class="form-control-file" id="item_illustration" name="item_illustration" required>
+                            <input type="file" class="form-control-file" id="item_illustration" name="item_illustration">
                         </div>
                         <div class="form-group">
                             <label for="item_description">Description</label>
-                            <textarea class="form-control" name="item_description" id="item_description" rows="3" placeholder="Description..."></textarea>
+                            <textarea class="form-control" name="item_description" required id="item_description" rows="3" placeholder="Description..."></textarea>
                         </div>
                         <div class="form-group">
                             <label for="item_illustration">Images</label>
-                            <input type="file" class="form-control-file" name="item_images[]" id="item_illustration" multiple="multiple" required>
+                            <input type="file" class="form-control-file" name="item_images[]" id="item_illustration" multiple="multiple">
                         </div>
                     </div>
                     <div class="modal-footer">

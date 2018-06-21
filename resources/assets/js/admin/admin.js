@@ -25,6 +25,7 @@ $("#new_category").submit(function (e) {
         contentType: false,
         success: function (data) {
             $('#m_new_category').modal('hide');
+            $("#new_category")[0].reset();
             $('table.table tbody').append(
                 '<tr id="' + data.id + '">' +
                 '<td><a href="/admin/category/' + data.id + '">' + data.title + '</a></td>' +
@@ -66,7 +67,7 @@ $("#new_item").submit(function (e) {
         success: function (data) {
             $('#m_new_item').modal('hide');
             $('.items').append(
-                '<div class="item">' +
+                '<div class="item" id="'+ data.id +'">' +
                 '<h3 data-id="' + data.id + '">' + data.title + '</h3>' +
                 '<p>' + data.description + '</p>' +
                 '<div class="align-images row"></div>' +
@@ -199,13 +200,30 @@ $("#edit_item").submit(function (e) {
 
     $.ajax({
         type: "POST",
-        url: window.location.origin + '/admin/category/' + id,
+        url: window.location.origin + '/admin/item/' + id,
         data: formData,
         dataType: 'json',
         processData: false,
         contentType: false,
         success: function (data) {
             console.log(data);
+            $('#m_edit_item').modal('hide');
+            $('#edit_item')[0].reset();
+            $('.item#' + id).empty().append(
+                '<h3 data-id="' + data.id + '">' + data.title + '</h3>' +
+                '<p>' + data.description + '</p>' +
+                '<div class="align-images row"></div>'
+            );
+
+            $.each(data.image, function (index, image) {
+                $('.align-images').append(
+                    '<div class="col-sm-1">' +
+                    '<a data-fancybox="gallery" href="' + image.path + '">' +
+                    '<img src="' + image.path + '">' +
+                    '</a>' +
+                    '</div>'
+                );
+            })
         }
     });
 });

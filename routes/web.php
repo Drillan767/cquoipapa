@@ -29,6 +29,7 @@ Route::get('/admin/categories/{id}/items', 'ItemController@items');
 Route::post('/admin/category/{id}', 'CategoryController@editCategory');
 Route::post('/admin/category/{id}/delete', 'CategoryController@deleteCategory');
 Route::post('/admin/item/delete', 'ItemController@deleteItem');
+Route::post('/admin/item/{id}', 'ItemController@editItem');
 
 Route::prefix('api/v1')->group(function () {
   Route::post('categories', 'ApiController@categories');

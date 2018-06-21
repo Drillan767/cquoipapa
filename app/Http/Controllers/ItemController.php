@@ -50,8 +50,41 @@ class ItemController extends Controller {
     return response()->json($item);
   }
 
-  public function editItem(Request $request) {
+  public function editItem(Request $request, $id) {
 
+    $item = Item::find($id);
+    $data = [];
+    $test = [];
+
+    if(isset($request->item_title)) {
+      $data['title']  = $request->item_title;
+    }
+
+    if(isset($request->item_description)) {
+      $data['description'] = $request->item_description;
+    }
+
+    if(isset($request->data_illustration)) {
+      Storage::delete(str_replace('storage', 'public', $item->illustration));
+      $data['illustration'] = $this->uploadFile($request->data_illustration, $item->id, $item->category_id);
+    }
+
+    if(isset($request->item_images)) {
+      foreach($request->item_images as $image) {
+
+        $item->image()->create([
+          'path' => $this->uploadItem($image, $item->id, $item->category_id)
+        ]);
+      }
+    }
+
+    if(!empty($data)) {
+      $item->update($data);
+    }
+
+    $item->images = $item->image;
+
+    return response()->json($item);
   }
 
   public function deleteItem(Request $request) {
