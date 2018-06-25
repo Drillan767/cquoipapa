@@ -40,6 +40,7 @@ Route::prefix('api/v1')->group(function () {
   Route::post('items', 'ApiController@items');
   Route::get('category/{id}', 'ApiController@getCategory');
   Route::post('user/login', 'ApiController@login');
+  Route::post('call', 'ApiController@callApi');
 });
 
 

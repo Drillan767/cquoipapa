@@ -33,4 +33,12 @@ class ApiController extends Controller {
 	public function items(Request $request) {
 	  return response()->json(Item::find($request->id));
   }
+
+  public function callApi(Request $request) {
+	  $user = User::where('token', '=', $request->token)->firstOrFail();
+	  $inc = $user->nb_api_call += 1;
+    $user->update(['nb_api_call' =>$inc]);
+    return response()->json('done');
+
+  }
 }
