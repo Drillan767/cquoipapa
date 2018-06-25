@@ -31,6 +31,10 @@ Route::post('/admin/category/{id}/delete', 'CategoryController@deleteCategory');
 Route::post('/admin/item/delete', 'ItemController@deleteItem');
 Route::post('/admin/item/{id}', 'ItemController@editItem');
 
+Route::post('/admin/clients', 'ClientController@postClient');
+Route::post('/admin/client/{id}', 'ClientController@editClient');
+Route::post('/admin/client/{id}/delete', 'ClientController@deleteClient');
+
 Route::prefix('api/v1')->group(function () {
   Route::post('categories', 'ApiController@categories');
   Route::post('items', 'ApiController@items');

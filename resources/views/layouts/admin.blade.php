@@ -73,20 +73,8 @@
 <header id="header">
     <div class="container">
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <h1><i class="fas fa-{{ $url['fa'] }}"></i> {{ $url['title'] }}</h1>
-            </div>
-            <div class="col-md-2">
-                <div class="dropdown create">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Action
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                        <button class="dropdown-item" type="button">Création Client</button>
-                        <button class="dropdown-item" type="button">Création Catégorie</button>
-                        <button class="dropdown-item" type="button">Créction Article</button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

@@ -1,11 +1,15 @@
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '@fancyapps/fancybox/dist/jquery.fancybox.min';
-import 'jquery-ui/ui/core';
+import 'select2/dist/js/select2.full.min';
 
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
+});
+
+$(document).ready(function() {
+    $('.new-category-select').select2({ width: '100%' });
 });
 
 $("#new_category").submit(function (e) {
@@ -260,5 +264,34 @@ $('#m_delete_item .btn-danger').on('click', function () {
             }
         },
         dataType: "json"
+    });
+});
+
+$("#new_user").submit(function (e) {
+    let formData = new FormData(this);
+    e.preventDefault();
+
+    $.ajax({
+        type: "POST",
+        url: window.location.href,
+        data: formData,
+        dataType: "json",
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            $('#m_new_user').modal('hide');
+            $('table.user').append(
+                '<tr id="'+ data.id +'">' +
+                '<td>'+ `${data.first_name} ${data.last_name}` +'</td>' +
+                '<td>'+ data.email +'</td>' +
+                '<td>'+ data.phone +'</td>' +
+                '<td>'+ data.nb_api_call +'</td>' +
+                '<td><button type="button" class="btn btn-outline-warning"><i class="far fa-edit"></i></button>' +
+                '<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#m_delete_category">' +
+                '<i class="fas fa-trash"></i>' +
+                '</button></td>' +
+                '</tr>'
+            );
+        }
     });
 });
