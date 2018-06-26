@@ -32,7 +32,7 @@ Route::post('/admin/item/delete', 'ItemController@deleteItem');
 Route::post('/admin/item/{id}', 'ItemController@editItem');
 
 Route::post('/admin/clients', 'ClientController@postClient');
-Route::post('/admin/client/{id}', 'ClientController@editClient');
+Route::post('/admin/client/{id}', 'ClientController@updateClient');
 Route::post('/admin/client/{id}/delete', 'ClientController@deleteClient');
 
 Route::prefix('api/v1')->group(function () {
@@ -41,6 +41,7 @@ Route::prefix('api/v1')->group(function () {
   Route::get('category/{id}', 'ApiController@getCategory');
   Route::post('user/login', 'ApiController@login');
   Route::post('call', 'ApiController@callApi');
+  Route::post('client', 'ClientController@getClient');
 });
 
 

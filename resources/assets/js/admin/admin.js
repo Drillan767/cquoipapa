@@ -210,7 +210,6 @@ $("#edit_item").submit(function (e) {
         processData: false,
         contentType: false,
         success: function (data) {
-            console.log(data);
             $('#m_edit_item').modal('hide');
             $('#edit_item')[0].reset();
             $('.item#' + id).empty().append(
@@ -280,6 +279,7 @@ $("#new_user").submit(function (e) {
         contentType: false,
         success: function (data) {
             $('#m_new_user').modal('hide');
+            $('#new_user')[0].reset();
             $('table.user').append(
                 '<tr id="'+ data.id +'">' +
                 '<td>'+ `${data.first_name} ${data.last_name}` +'</td>' +
@@ -294,4 +294,85 @@ $("#new_user").submit(function (e) {
             );
         }
     });
+});
+
+$('table.users .btn-outline-warning').on('click', function () {
+    let $id = $(this).closest('tr').prop('id');
+    $.post(window.location.origin + '/api/v1/client', {id: $id})
+        .done(function(data) {
+
+            let category_id = [];
+            data.categories.map(function(category) {
+               category_id.push(category.id);
+            });
+
+            $('#m_edit_user h5.modal-title').empty().append(`Modifier ${data.first_name} ${data.last_name}`);
+            $('#m_edit_user input[name="user_first_name"]').val(data.first_name);
+            $('#m_edit_user input[name="user_last_name"]').val(data.last_name);
+            $('#m_edit_user input[name="user_email"]').val(data.email);
+            $('#m_edit_user input[name="user_phone"]').val(data.phone);
+
+            $('.edit-category-select')
+                .select2({ width: '100%' })
+                .val(category_id)
+                .trigger('change');
+
+            $('#m_edit_user').attr('data-id', data.id).modal();
+
+    });
+});
+
+$("#edit_user").submit(function (e) {
+    let formData = new FormData(this);
+    let id = $('#m_edit_user').attr('data-id');
+    e.preventDefault();
+
+    $.ajax({
+        type: "POST",
+        url: window.location.origin + '/admin/client/' + id,
+        data: formData,
+        dataType: 'json',
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            $('#m_edit_user').modal('hide');
+            $('#edit_user')[0].reset();
+            $('tr#' + id).empty().append(
+                '<td>'+ `${data.first_name} ${data.last_name}` +'</td>' +
+                '<td>'+ data.email +'</td>' +
+                '<td>'+ data.phone +'</td>' +
+                '<td>'+ data.nb_api_call +'</td>' +
+                '<td><button type="button" class="btn btn-outline-warning"><i class="far fa-edit"></i></button>' +
+                '<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#m_delete_category">' +
+                '<i class="fas fa-trash"></i>' +
+                '</button></td>' +
+                '</tr>'
+            );
+        }
+    });
+});
+
+$('table.users .btn-outline-danger').on('click', function() {
+    let $id = $(this).closest('tr').prop('id');
+    console.log($id);
+    $.post(window.location.origin + '/api/v1/client', {id: $id})
+        .done(function(data) {
+            $('#m_delete_user h5.modal-title').empty().append(`Supprimer ${data.first_name} ${data.last_name} ?`);
+            $('#m_delete_user .modal-body').empty().append('<p>Les catégories liées ne seront pas supprimées.</p>')
+                .append('<p>Continuer ?</p>');
+            $('#m_delete_user').attr('data-id', data.id).modal();
+
+    });
+    $('#m_delete_user').modal();
+});
+
+$('#m_delete_user .btn-danger').on('click', function () {
+    let $id = $('#m_delete_user').attr('data-id');
+    $.post(window.location.origin + '/admin/client/' + $id + '/delete')
+        .done(function(data) {
+            if (data === 'done') {
+                $('#m_delete_user').modal('hide');
+                $(`table.users tr#${$id}`).remove();
+            }
+        });
 });

@@ -28,7 +28,7 @@
                 <td>{{ $user->nb_api_call }}</td>
                 <td>
                     <button type="button" class="btn btn-outline-warning"><i class="far fa-edit"></i></button>
-                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#m_delete_category">
+                    <button type="button" class="btn btn-outline-danger">
                         <i class="fas fa-trash"></i>
                     </button>
                 </td>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="form-group">
                             <label for="user_categories">Catégories</label>
-                            <select class="new-category-select" name="user_categories[]" multiple="multiple">
+                            <select class="new-category-select" id="user_categories" name="user_categories[]" multiple="multiple">
                                 @foreach($categories as $id => $category)
                                     <option value="{{ $id }}">{{ $category }}</option>
                                 @endforeach
@@ -101,13 +101,24 @@
                             <input type="text" class="form-control" id="user_last_name" placeholder="Nom" name="user_last_name" required>
                         </div>
                         <div class="form-group">
+                            <label for="user_email">Adresse email</label>
+                            <input type="text" class="form-control" id="user_email" placeholder="Adresse email" name="user_email" required>
+                        </div>
+                        <div class="form-group">
                             <label for="user_phone">Téléphone</label>
                             <input type="text" class="form-control" id="user_phone" placeholder="Téléphone" name="user_phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_categories">Catégories</label>
+                            <select class="edit-category-select" id="user_categories" name="user_categories[]" multiple="multiple">
+                                @foreach($categories as $id => $category)
+                                    <option value="{{ $id }}">{{ $category }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-danger">Supprimer</button>
                         <button type="submit" class="btn btn-primary">Enregistrer</button>
                     </div>
                 </form>

@@ -53,12 +53,3 @@ class HomeController extends Controller {
 		return '/' . str_replace('public', 'storage', $path);
 	}
 }
-
-/*
- Finir affichage d'items, modification et suppression avec les animations qui vont avec
- Mettre en place de quoi faire l'autocompletion + ajouter les catégories au client + en proposer d'autres avec l'AC
- Gérer tout ça depuis le back office
-
- Créer des services pour attacher + détacher une catégorie d'un utilisateur et incrémenter les appels à l'api
-
- */

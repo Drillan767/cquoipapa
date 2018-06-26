@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 use App\User;
 use App\Category;
 
 class ClientController extends Controller {
 
+  /**
+   * @return Factory|View
+   */
   public function index() {
 
     $users = User::where('roles', '=', 'client')->get();
@@ -16,6 +22,20 @@ class ClientController extends Controller {
     return view('admin.users', ['users' => $users, 'categories' => $categories]);
   }
 
+  /**
+   * @param Request $request
+   * @return JsonResponse
+   */
+  public function getClient(Request $request) {
+    $user = User::find($request->id);
+    $user->categories = $user->userCategories()->get();
+    return response()->json($user);
+  }
+
+  /**
+   * @param Request $request
+   * @return JsonResponse
+   */
   public function postClient(Request $request) {
 
     $user = new User();
@@ -39,11 +59,47 @@ class ClientController extends Controller {
     return response()->json($user);
   }
 
-  public function updateClient(Request $request) {
+  /**
+   * @param Request $request
+   * @param $id
+   * @return JsonResponse
+   */
+  public function updateClient(Request $request, $id) {
 
+    $data = [];
+    $user = User::find($id);
+
+    if($user->first_name !== $request->user_first_name) {
+      $data['first_name'] = $request->user_first_name;
+    }
+
+    if($user->last_name !== $request->user_last_name) {
+      $data['last_name'] = $request->user_last_name;
+    }
+
+    if($user->email !== $request->user_email) {
+      $data['email'] = $request->user_email;
+    }
+
+    if($user->phone !== $request->user_phone) {
+      $data['phone'] = $request->user_phone;
+    }
+
+    $user->userCategories()->sync($request->user_categories);
+
+    if(!empty($data)) {
+      $user->update($data);
+    }
+
+    return response()->json($user);
   }
 
-  public function deleteClient(Request $request) {
+  public function deleteClient($id) {
+    $user = User::find($id);
+    $user->userCategories()->detach();
+    $user->delete();
+
+    return response()->json('done');
 
   }
 }
