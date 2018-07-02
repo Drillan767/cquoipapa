@@ -27,6 +27,7 @@
                 <td>{{ chunk_split($user->phone, 2, ' ') }}</td>
                 <td>{{ $user->nb_api_call }}</td>
                 <td>
+                    <button type="button" class="btn btn-outline-primary"><i class="far fa-share-square"></i></button>
                     <button type="button" class="btn btn-outline-warning"><i class="far fa-edit"></i></button>
                     <button type="button" class="btn btn-outline-danger">
                         <i class="fas fa-trash"></i>
@@ -140,6 +141,26 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
                     <button type="submit" class="btn btn-danger">Supprimer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exported" tabindex="-1" role="dialog" aria-labelledby="exported" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Images exportées</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Les images ont correctement été exportées.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>

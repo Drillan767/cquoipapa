@@ -34,6 +34,7 @@ Route::post('/admin/item/{id}', 'ItemController@editItem');
 Route::post('/admin/clients', 'ClientController@postClient');
 Route::post('/admin/client/{id}', 'ClientController@updateClient');
 Route::post('/admin/client/{id}/delete', 'ClientController@deleteClient');
+Route::post('/admin/client/{id}/export', 'ClientController@export');
 
 Route::prefix('api/v1')->group(function () {
   Route::post('categories', 'ApiController@categories');

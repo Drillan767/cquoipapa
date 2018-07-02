@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\View\View;
-use App\User;
 use App\Category;
+use App\User;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 
 class ClientController extends Controller {
 
@@ -102,4 +103,40 @@ class ClientController extends Controller {
     return response()->json('done');
 
   }
+
+  public function export($id) {
+
+  	$client_id = "client_$id";
+  	$export = [];
+	  $user = User::find($id);
+
+  	foreach($user->userCategories()->get() as $category) {
+
+		  $category_name = "$category->title";
+		  $items = $category->item()->get();
+
+		  foreach ($items as $item) {
+		  	$item_name = "$item->title";
+			  $export[$category_name][$item_name] = $item->image()->get(['path']);
+
+			  foreach($item->image()->get(['path']) as $image) {
+
+			  	$new_path = "public/$client_id/$category_name/$item_name/" . basename($image->path);
+			  	$old_path = str_replace('storage', 'public', $image->path);
+
+			  	if(!Storage::disk('local')->has($new_path)) {
+					  Storage::copy($old_path, $new_path);
+
+				  }
+			  }
+		  }
+	  }
+
+  	return response()->json('done');
+
+
+
+
+  }
+
 }

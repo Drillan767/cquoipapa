@@ -70,6 +70,7 @@ $("#new_item").submit(function (e) {
         contentType: false,
         success: function (data) {
             $('#m_new_item').modal('hide');
+            $('#new_item')[0].reset();
             $('.items').append(
                 '<div class="item" id="'+ data.id +'">' +
                 '<h3 data-id="' + data.id + '">' + data.title + '</h3>' +
@@ -191,8 +192,6 @@ $('.item h3').on('click', function () {
     });
 
 });
-
-// j'en étais là
 
 $("#edit_item").submit(function (e) {
     let formData = new FormData(this);
@@ -354,7 +353,6 @@ $("#edit_user").submit(function (e) {
 
 $('table.users .btn-outline-danger').on('click', function() {
     let $id = $(this).closest('tr').prop('id');
-    console.log($id);
     $.post(window.location.origin + '/api/v1/client', {id: $id})
         .done(function(data) {
             $('#m_delete_user h5.modal-title').empty().append(`Supprimer ${data.first_name} ${data.last_name} ?`);
@@ -375,4 +373,14 @@ $('#m_delete_user .btn-danger').on('click', function () {
                 $(`table.users tr#${$id}`).remove();
             }
         });
+});
+
+$('table.users .btn-outline-primary').on('click', function() {
+    let $id = $(this).closest('tr').prop('id');
+    $.post(window.location.origin + '/admin/client/'+ $id +'/export')
+        .done(function(data) {
+            if(data === 'done') {
+                $('#exported').modal('show');
+            }
+        })
 });
