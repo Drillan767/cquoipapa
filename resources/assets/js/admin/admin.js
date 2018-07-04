@@ -279,7 +279,7 @@ $("#new_user").submit(function (e) {
         success: function (data) {
             $('#m_new_user').modal('hide');
             $('#new_user')[0].reset();
-            $('table.user').append(
+            $('table.users').append(
                 '<tr id="'+ data.id +'">' +
                 '<td>'+ `${data.first_name} ${data.last_name}` +'</td>' +
                 '<td>'+ data.email +'</td>' +

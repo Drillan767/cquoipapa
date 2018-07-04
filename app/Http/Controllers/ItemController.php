@@ -20,6 +20,11 @@ class ItemController extends Controller {
     return response()->json($items);
   }
 
+  public function itemsList() {
+  	$items = Item::all();
+	  return view('admin.items', [ 'items' => $items]);
+  }
+
   /**
    * @param $request
    * @param $id integer

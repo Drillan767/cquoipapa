@@ -131,12 +131,15 @@ class ClientController extends Controller {
 			  }
 		  }
 	  }
-
   	return response()->json('done');
-
-
-
-
   }
 
+  public function editUser() {
+
+  	return view('auth.edit');
+  }
+
+  public function postUser(Request $request) {
+
+  }
 }

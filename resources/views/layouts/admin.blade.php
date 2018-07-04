@@ -57,7 +57,10 @@
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
+                            {{ __('Déconnexion') }}
+                        </a>
+                        <a class="dropdown-item" href="/admin/user/edit">
+                            Modifier le profil
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -105,7 +108,7 @@
                         </div>
                         <span class="badge badge-secondary badge-pill">{{ $categories }}</span>
                     </a>
-                    <a href="/admin/objets" class="list-group-item list-group-item-action @if(basename(url()->current()) == 'items')active @endif d-flex justify-content-between align-items-center">
+                    <a href="/admin/objets" class="list-group-item list-group-item-action @if(basename(url()->current()) == 'objets')active @endif d-flex justify-content-between align-items-center">
                         <div class="list-icon">
                             <i class="fas fa-cubes"></i>
                             Objets

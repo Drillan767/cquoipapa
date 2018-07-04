@@ -15,10 +15,13 @@ Route::get('/contact', function () {
   return view('contact');
 });
 
-Route::prefix('admin')->group(function () {
+Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function() {
   Route::get('categories', 'CategoryController@categories')->name('categories');
   Route::get('category/{id}', 'CategoryController@category');
   Route::get('/clients', 'ClientController@index')->name('clients');
+  Route::get('/user/edit', 'ClientController@editUser');
+  Route::post('/user/edit', 'ClientController@postUser');
+  Route::get('/objets', 'ItemController@itemsList');
 
 
 });
@@ -58,12 +61,15 @@ View::composer('layouts.admin', function ($view) {
     '/admin/categories' => [
       'title' => 'Catégories', 'fa' => 'list'
     ],
-    '/admin/items' => [
+    '/admin/objets' => [
       'title' => 'Objets', 'fa' => 'cubes'
     ],
     '/admin/clients' => [
       'title' => 'Clients', 'fa' => 'user'
-    ]
+    ],
+	  '/admin/user/edit' => [
+	  	'title' => 'Modifier l\'utilisateur', 'fa' => 'user'
+	  ]
   ];
 
 
@@ -74,7 +80,7 @@ View::composer('layouts.admin', function ($view) {
   }
 
   $categories = Category::count();
-  $users = User::count();
+	$users = count(User::where('roles', '=', 'client')->get());
   $items = Item::count();
   $disk = 100 - (disk_free_space('/') / disk_total_space('/') * 100);
 
