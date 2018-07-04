@@ -20,7 +20,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function() {
   Route::get('category/{id}', 'CategoryController@category');
   Route::get('/clients', 'ClientController@index')->name('clients');
   Route::get('/user/edit', 'ClientController@editUser');
-  Route::post('/user/edit', 'ClientController@postUser');
+  Route::post('/user/edit', 'ClientController@postUser')->name('update_user');
   Route::get('/objets', 'ItemController@itemsList');
 
 
