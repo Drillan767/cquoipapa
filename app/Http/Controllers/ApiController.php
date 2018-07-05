@@ -22,7 +22,7 @@ class ApiController extends Controller {
 	}
 
 	public function categories(Request $request) {
-		$user = User::find($request->id);
+		$user = User::where('token', '=', $request->token)->firstOrFail();
 		return response()->json($user->userCategories()->get());
 	}
 
