@@ -28,7 +28,9 @@ $("#new_category").submit(function (e) {
         processData: false,
         contentType: false,
         success: function (data) {
-            $('#m_new_category').modal('hide');
+
+            console.log(data);
+            /*$('#m_new_category').modal('hide');
             $("#new_category")[0].reset();
             $('table.table tbody').append(
                 '<tr id="' + data.id + '">' +
@@ -49,7 +51,7 @@ $("#new_category").submit(function (e) {
                 $('tr#' + data.id + ' td span').addClass('enabled').append('Actif');
             } else {
                 $('td span').addClass('disabled').append('Inactif');
-            }
+            }*/
         }
     });
 });

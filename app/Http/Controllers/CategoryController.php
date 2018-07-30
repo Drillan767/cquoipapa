@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View;
 use Illuminate\Contracts\View\Factory;
 use App\Category;
-use App\Item;
-use App\User;
+use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller {
@@ -41,7 +41,7 @@ class CategoryController extends Controller {
 		$category->save();
 
 		$category->illustration = $this->uploadFile($request->category_illustration, $category->id);
-    $category->save();
+		$category->save();
 
 		return response()->json($category);
 
@@ -66,7 +66,7 @@ class CategoryController extends Controller {
 		}
 
 		if(isset($request->category_illustration)) {
-			$data['illustration'] = $this->updateFile($request->category_illustration, $id);
+			$data['illustration'] = $this->uploadFile($request->category_illustration, $id);
 		}
 
 		if(!empty($data)) {
@@ -89,8 +89,15 @@ class CategoryController extends Controller {
 	 * @return string
 	 */
 	private function uploadFile($file, $category_id) {
-		$filename = $file->getClientOriginalName();
-		$path = $file->storeAs("public/category/$category_id", $filename);
-		return '/' . str_replace('public', 'storage', $path);
+
+		$path = $path = storage_path('app/public/category/' . $category_id);
+
+		is_dir($path) ?: mkdir($path);
+
+		Image::make($file)->resize(NULL, 400, function ($constraint) {
+			$constraint->aspectRatio();
+		})->save($path . '/' . $file->getClientOriginalName());
+
+		return '/storage/category/' . $category_id . '/' . $file->getClientOriginalName();
 	}
 }
