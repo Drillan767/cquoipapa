@@ -15,7 +15,6 @@ class CreateItemsTable extends Migration {
 			$table->increments('id');
 			$table->string('title');
 			$table->text('description');
-			$table->integer('category_id');
       $table->string('illustration');
 		});
 	}
