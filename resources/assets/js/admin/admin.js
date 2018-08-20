@@ -46,7 +46,7 @@ $("#new_category").submit(function (e) {
                 '</tr>'
             );
 
-            if (data.enabled === 1) {
+            if (data.enabled) {
                 $('tr#' + data.id + ' td span').addClass('enabled').append('Actif');
             } else {
                 $('td span').addClass('disabled').append('Inactif');

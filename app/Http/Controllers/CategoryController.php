@@ -92,7 +92,7 @@ class CategoryController extends Controller {
 	 */
 	private function uploadFile($file, $category_id) {
 
-		$path = $path = storage_path('app/public/category/' . $category_id);
+		$path = storage_path('app/public/category/' . $category_id);
 
 		is_dir($path) ?: mkdir($path);
 
