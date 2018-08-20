@@ -23,7 +23,7 @@ class CategoryController extends Controller {
 	public function category($id) {
 	    $categories = Category::all();
 		$category = Category::find($id);
-		$items = Category::find($id)->item;
+		$items = Category::find($id)->categoryItems()->get();
 
 		return view('admin.category', compact('categories','category', 'items'));
 	}
