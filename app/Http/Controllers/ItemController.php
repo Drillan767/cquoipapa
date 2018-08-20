@@ -32,18 +32,24 @@ class ItemController extends Controller {
    */
   public function postItem(Request $request, $id) {
 
-    $category = Category::find($id);
-    $category->item()->create([
-      'title' => $request->item_title,
-      'description' => $request->item_description,
-      'illustration' => ''
-    ]);
+    $item = new Item();
 
-    $item = Item::find(Item::max('id'));
+    $item->title = $request->item_title;
+    $item->description = $request->item_description;
+    $item->illustration = '';
+
+    if (isset($request->item_categories)) {
+      foreach ($request->item_categories as $category) {
+          $item->categoryItems()->attach($category);
+      }
+    }
+
+    $item->save();
 
     $item->illustration = $this->uploadFile($request->item_illustration, $item->id, $id);
     $item->save();
 
+    $category = Category::find($id);
     foreach ($request->item_images as $image) {
       $item->image()->create([
         'path' => $this->uploadItem($image, $item->id, $category->id)
@@ -59,7 +65,6 @@ class ItemController extends Controller {
 
     $item = Item::find($id);
     $data = [];
-    $test = [];
 
     if(isset($request->item_title)) {
       $data['title']  = $request->item_title;
@@ -82,6 +87,8 @@ class ItemController extends Controller {
         ]);
       }
     }
+
+    $item->categoryItems()->sync($request->item_categories);
 
     if(!empty($data)) {
       $item->update($data);

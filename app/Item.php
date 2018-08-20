@@ -13,7 +13,7 @@ class Item extends Model {
 		return $this->hasMany('App\Image');
 	}
 
-	public function category() {
-		return $this->belongsTo('App\Category');
-	}
+    public function categoryItems(){
+        return $this->belongsToMany('App\Category', 'category_item', 'item_id');
+    }
 }

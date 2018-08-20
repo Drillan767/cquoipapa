@@ -125,5 +125,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/admin.js') }}" defer></script>
+
+    @yield('script')
 </body>
 </html>

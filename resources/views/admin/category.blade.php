@@ -62,6 +62,14 @@
                             <label for="item_illustration">Images</label>
                             <input type="file" class="form-control-file" name="item_images[]" id="item_illustration" multiple="multiple" required>
                         </div>
+                        <div class="form-group">
+                            <label for="user_categories">Catégorie rattachée</label>
+                            <select class="new-item-select" id="item_categories" name="item_categories[]" multiple="multiple">
+                                @foreach($categories as $id => $category)
+                                    <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
@@ -129,5 +137,15 @@
         </div>
     </div>
 
+@endsection
 
+@section('script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+    <script type="application/javascript">
+        $('.new-item-select')
+            .select2({ width: '100%' })
+            .val(<?= $category->id ?>)
+            .trigger("change");
+    </script>
 @endsection

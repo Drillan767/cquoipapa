@@ -21,10 +21,11 @@ class CategoryController extends Controller {
 	}
 
 	public function category($id) {
+	    $categories = Category::all();
 		$category = Category::find($id);
-		$item = Category::find($id)->item;
+		$items = Category::find($id)->item;
 
-		return view('admin.category', ['category' => $category, 'items' => $item]);
+		return view('admin.category', compact('categories','category', 'items'));
 	}
 
 	/**
@@ -38,6 +39,7 @@ class CategoryController extends Controller {
 		$category->description = $request->category_description;
 		$category->enabled = isset($request->category_enabled) ? true : false;
 		$category->illustration = '';
+
 		$category->save();
 
 		$category->illustration = $this->uploadFile($request->category_illustration, $category->id);
@@ -57,11 +59,11 @@ class CategoryController extends Controller {
 			$data['title'] = $request->category_title;
 		}
 
-		if($request->description !== $request->category_description) {
+		if($category->description !== $request->category_description) {
 			$data['description'] = $request->category_description;
 		}
 
-		if($request->enabled != $checkbox) {
+		if($category->enabled != $checkbox) {
 			$data['enabled'] = $checkbox;
 		}
 
