@@ -29,8 +29,7 @@ $("#new_category").submit(function (e) {
         contentType: false,
         success: function (data) {
 
-            console.log(data);
-            /*$('#m_new_category').modal('hide');
+            $('#m_new_category').modal('hide');
             $("#new_category")[0].reset();
             $('table.table tbody').append(
                 '<tr id="' + data.id + '">' +
@@ -51,7 +50,7 @@ $("#new_category").submit(function (e) {
                 $('tr#' + data.id + ' td span').addClass('enabled').append('Actif');
             } else {
                 $('td span').addClass('disabled').append('Inactif');
-            }*/
+            }
         }
     });
 });
@@ -82,7 +81,7 @@ $("#new_item").submit(function (e) {
             );
 
             $.each(data.image, function (index, image) {
-                $('.align-images').append(
+                $('#' + data.id + ' .align-images').append(
                     '<div class="col-sm-1">' +
                     '<a data-fancybox="gallery" href="' + image.path + '">' +
                     '<img src="' + image.path + '">' +
