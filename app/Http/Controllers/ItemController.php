@@ -38,6 +38,8 @@ class ItemController extends Controller {
     $item->description = $request->item_description;
     $item->illustration = '';
 
+    $item->save();
+
     if (isset($request->item_categories)) {
       foreach ($request->item_categories as $category) {
           $item->categoryItems()->attach($category);

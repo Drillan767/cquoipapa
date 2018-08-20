@@ -94,7 +94,7 @@ class CategoryController extends Controller {
 
 		$path = storage_path('app/public/category/' . $category_id);
 
-		is_dir($path) ?: mkdir($path);
+		is_dir($path) ?: mkdir($path, 0777, true);
 
 		Image::make($file)->resize(NULL, 400, function ($constraint) {
 			$constraint->aspectRatio();
