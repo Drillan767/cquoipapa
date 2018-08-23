@@ -26,14 +26,10 @@ class HomeController extends Controller {
 	 * @return Factory|View\View
 	 */
 	public function admin() {
-	  $users = User::all();
+		$users = User::where('roles', '=', 'client')->get();
 	  $categories = Category::count();
 	  $items = Item::count();
-		return view('admin.index', [
-		  'items' => $items,
-      'categories' => $categories,
-      'users' => $users
-    ]);
+	  return view('admin.index', compact('users', 'categories', 'items'));
 	}
 
 	public function category($id) {

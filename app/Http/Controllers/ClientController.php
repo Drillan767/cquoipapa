@@ -42,19 +42,18 @@ class ClientController extends Controller {
 	public function postClient(Request $request) {
 
 		$user = new User();
-		$user->first_name = $request->user_first_name;
-		$user->last_name = $request->user_last_name;
-		$user->phone = $request->user_phone;
-		$user->email = $request->user_email;
-		$user->password = bcrypt('password');
-		$user->roles = 'client';
+		$fields = ['first_name', 'last_name', 'phone', 'email'];
+		foreach($fields as $field) {
+			$user->$field = $request->$field;
+		}
+		$user->password = bcrypt($request->password);
 		$user->nb_api_call = 0;
 		$user->token = str_random('10');
 
 		$user->save();
 
-		if (isset($request->user_categories)) {
-			foreach ($request->user_categories as $category) {
+		if (isset($request->categories)) {
+			foreach ($request->categories as $category) {
 				$user->userCategories()->attach($category);
 			}
 		}
@@ -71,21 +70,16 @@ class ClientController extends Controller {
 
 		$data = [];
 		$user = User::find($id);
+		$fields = ['first_name', 'last_name', 'phone', 'email'];
 
-		if ($user->first_name !== $request->user_first_name) {
-			$data['first_name'] = $request->user_first_name;
+		foreach($fields as $field) {
+			if($user->$field !== $request->$field) {
+				$data[$field] = $request->$field;
+			}
 		}
 
-		if ($user->last_name !== $request->user_last_name) {
-			$data['last_name'] = $request->user_last_name;
-		}
-
-		if ($user->email !== $request->user_email) {
-			$data['email'] = $request->user_email;
-		}
-
-		if ($user->phone !== $request->user_phone) {
-			$data['phone'] = $request->user_phone;
+		if($request->password) {
+			$data['password'] = bcrypt($request->password);
 		}
 
 		$user->userCategories()->sync($request->user_categories);

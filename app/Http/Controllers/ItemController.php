@@ -22,7 +22,7 @@ class ItemController extends Controller {
 
   public function itemsList() {
   	$items = Item::all();
-	  return view('admin.items', [ 'items' => $items]);
+	  return view('admin.items', ['items' => $items]);
   }
 
   /**

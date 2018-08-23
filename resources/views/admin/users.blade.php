@@ -4,8 +4,6 @@
 
 @section('content')
 
-    {{--{{ dd($categories) }}--}}
-
     <div class="add">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#m_new_user">
             <i class="fas fa-plus"></i> Nouveau client
@@ -49,24 +47,28 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="user_first_name">Prénom</label>
-                            <input type="text" class="form-control" id="user_first_name" placeholder="Prénom" name="user_first_name" required autofocus>
+                            <label for="first_name">Prénom</label>
+                            <input type="text" class="form-control" id="first_name" placeholder="Prénom" name="first_name" required autofocus>
                         </div>
                         <div class="form-group">
-                            <label for="user_last_name">Nom</label>
-                            <input type="text" class="form-control" id="user_last_name" placeholder="Nom" name="user_last_name" required>
+                            <label for="last_name">Nom</label>
+                            <input type="text" class="form-control" id="last_name" placeholder="Nom" name="last_name" required>
                         </div>
                         <div class="form-group">
-                            <label for="user_email">Adresse email</label>
-                            <input type="text" class="form-control" id="user_email" placeholder="Adresse email" name="user_email" required>
+                            <label for="email">Adresse email</label>
+                            <input type="text" class="form-control" id="email" placeholder="Adresse email" name="email" required>
                         </div>
                         <div class="form-group">
-                            <label for="user_phone">Téléphone</label>
-                            <input type="text" class="form-control" id="user_phone" placeholder="Téléphone" name="user_phone" required>
+                            <label for="phone">Téléphone</label>
+                            <input type="text" class="form-control" id="phone" placeholder="Téléphone" name="phone" required>
                         </div>
                         <div class="form-group">
-                            <label for="user_categories">Catégories</label>
-                            <select class="new-category-select" id="user_categories" name="user_categories[]" multiple="multiple">
+                            <label for="password">Mot de passe</label>
+                            <input type="password" class="form-control" id="password" placeholder="Mot de passe" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="categories">Catégories</label>
+                            <select class="new-category-select" id="categories" name="categories[]" multiple="multiple">
                                 @foreach($categories as $id => $category)
                                     <option value="{{ $id }}">{{ $category }}</option>
                                 @endforeach
@@ -94,24 +96,28 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="user_first_name">Prénom</label>
-                            <input type="text" class="form-control" id="user_first_name" placeholder="Prénom" name="user_first_name" required autofocus>
+                            <label for="first_name">Prénom</label>
+                            <input type="text" class="form-control" id="first_name" placeholder="Prénom" name="first_name" required autofocus>
                         </div>
                         <div class="form-group">
-                            <label for="user_last_name">Nom</label>
-                            <input type="text" class="form-control" id="user_last_name" placeholder="Nom" name="user_last_name" required>
+                            <label for="last_name">Nom</label>
+                            <input type="text" class="form-control" id="last_name" placeholder="Nom" name="last_name" required>
                         </div>
                         <div class="form-group">
-                            <label for="user_email">Adresse email</label>
-                            <input type="text" class="form-control" id="user_email" placeholder="Adresse email" name="user_email" required>
+                            <label for="email">Adresse email</label>
+                            <input type="text" class="form-control" id="email" placeholder="Adresse email" name="email" required>
                         </div>
                         <div class="form-group">
-                            <label for="user_phone">Téléphone</label>
-                            <input type="text" class="form-control" id="user_phone" placeholder="Téléphone" name="user_phone" required>
+                            <label for="phone">Téléphone</label>
+                            <input type="text" class="form-control" id="phone" placeholder="Téléphone" name="phone" required>
                         </div>
                         <div class="form-group">
-                            <label for="user_categories">Catégories</label>
-                            <select class="edit-category-select" id="user_categories" name="user_categories[]" multiple="multiple">
+                            <label for="password">Mot de passe</label>
+                            <input type="password" class="form-control" id="password" placeholder="Nouveau mot de passe" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="categories">Catégories</label>
+                            <select class="edit-category-select" id="categories" name="categories[]" multiple="multiple">
                                 @foreach($categories as $id => $category)
                                     <option value="{{ $id }}">{{ $category }}</option>
                                 @endforeach
