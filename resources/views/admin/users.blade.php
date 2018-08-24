@@ -48,27 +48,27 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="first_name">Prénom</label>
-                            <input type="text" class="form-control" id="first_name" placeholder="Prénom" name="first_name" required autofocus>
+                            <input type="text" class="form-control" placeholder="Prénom" name="first_name" required autofocus>
                         </div>
                         <div class="form-group">
                             <label for="last_name">Nom</label>
-                            <input type="text" class="form-control" id="last_name" placeholder="Nom" name="last_name" required>
+                            <input type="text" class="form-control" placeholder="Nom" name="last_name" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Adresse email</label>
-                            <input type="text" class="form-control" id="email" placeholder="Adresse email" name="email" required>
+                            <input type="text" class="form-control" placeholder="Adresse email" name="email" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Téléphone</label>
-                            <input type="text" class="form-control" id="phone" placeholder="Téléphone" name="phone" required>
+                            <input type="text" class="form-control" placeholder="Téléphone" name="phone" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Mot de passe</label>
-                            <input type="password" class="form-control" id="password" placeholder="Mot de passe" name="password" required>
+                            <input type="password" class="form-control" placeholder="Mot de passe" name="password" required>
                         </div>
                         <div class="form-group">
                             <label for="categories">Catégories</label>
-                            <select class="new-category-select" id="categories" name="categories[]" multiple="multiple">
+                            <select class="new-category-select" name="categories[]" multiple="multiple">
                                 @foreach($categories as $id => $category)
                                     <option value="{{ $id }}">{{ $category }}</option>
                                 @endforeach
@@ -97,27 +97,27 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="first_name">Prénom</label>
-                            <input type="text" class="form-control" id="first_name" placeholder="Prénom" name="first_name" required autofocus>
+                            <input type="text" class="form-control" placeholder="Prénom" name="first_name" required autofocus>
                         </div>
                         <div class="form-group">
                             <label for="last_name">Nom</label>
-                            <input type="text" class="form-control" id="last_name" placeholder="Nom" name="last_name" required>
+                            <input type="text" class="form-control" placeholder="Nom" name="last_name" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Adresse email</label>
-                            <input type="text" class="form-control" id="email" placeholder="Adresse email" name="email" required>
+                            <input type="text" class="form-control" placeholder="Adresse email" name="email" required>
                         </div>
                         <div class="form-group">
                             <label for="phone">Téléphone</label>
-                            <input type="text" class="form-control" id="phone" placeholder="Téléphone" name="phone" required>
+                            <input type="text" class="form-control" placeholder="Téléphone" name="phone" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Mot de passe</label>
-                            <input type="password" class="form-control" id="password" placeholder="Nouveau mot de passe" name="password" required>
+                            <input type="password" class="form-control" placeholder="Nouveau mot de passe" name="password">
                         </div>
                         <div class="form-group">
                             <label for="categories">Catégories</label>
-                            <select class="edit-category-select" id="categories" name="categories[]" multiple="multiple">
+                            <select class="edit-category-select" name="categories[]" multiple="multiple">
                                 @foreach($categories as $id => $category)
                                     <option value="{{ $id }}">{{ $category }}</option>
                                 @endforeach

@@ -43,9 +43,9 @@
                 </tr>
                 @foreach($users as $user)
                 <tr>
-                    <td>John Smith</td>
+                    <td>{{ $user->first_name }} {{$user->last_name}}</td>
                     <td>{{ $user->email }}</td>
-                    <td>04 77 75 93 12</td>
+                    <td>{{ $user->phone }}</td>
                 </tr>
                 @endforeach
             </table>

@@ -307,10 +307,10 @@ $('table.users .btn-outline-warning').on('click', function () {
             });
 
             $('#m_edit_user h5.modal-title').empty().append(`Modifier ${data.first_name} ${data.last_name}`);
-            $('#m_edit_user input[name="user_first_name"]').val(data.first_name);
-            $('#m_edit_user input[name="user_last_name"]').val(data.last_name);
-            $('#m_edit_user input[name="user_email"]').val(data.email);
-            $('#m_edit_user input[name="user_phone"]').val(data.phone);
+            $('#m_edit_user input[name="first_name"]').val(data.first_name);
+            $('#m_edit_user input[name="last_name"]').val(data.last_name);
+            $('#m_edit_user input[name="email"]').val(data.email);
+            $('#m_edit_user input[name="phone"]').val(data.phone);
 
             $('.edit-category-select')
                 .select2({ width: '100%' })
@@ -342,6 +342,7 @@ $("#edit_user").submit(function (e) {
                 '<td>'+ data.email +'</td>' +
                 '<td>'+ data.phone +'</td>' +
                 '<td>'+ data.nb_api_call +'</td>' +
+                '<button type="button" class="btn btn-outline-primary"><i class="far fa-share-square"></i></button>'+
                 '<td><button type="button" class="btn btn-outline-warning"><i class="far fa-edit"></i></button>' +
                 '<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#m_delete_category">' +
                 '<i class="fas fa-trash"></i>' +

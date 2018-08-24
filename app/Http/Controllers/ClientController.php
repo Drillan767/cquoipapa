@@ -47,6 +47,7 @@ class ClientController extends Controller {
 			$user->$field = $request->$field;
 		}
 		$user->password = bcrypt($request->password);
+		$user->roles = 'client';
 		$user->nb_api_call = 0;
 		$user->token = str_random('10');
 
@@ -82,7 +83,7 @@ class ClientController extends Controller {
 			$data['password'] = bcrypt($request->password);
 		}
 
-		$user->userCategories()->sync($request->user_categories);
+		$user->userCategories()->sync($request->categories);
 
 		if (!empty($data)) {
 			$user->update($data);
