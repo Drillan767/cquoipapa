@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="col-md-12">
-        <h1>{{ $category->title }}</h1>
+        <h1>#{{ $category->id }} - {{ $category->title }}</h1>
         <h2>{{ $category->description }}</h2>
 
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#m_new_item">
@@ -18,7 +18,7 @@
                     <div class="item" id="{{ $item->id }}">
                         <div class="row">
                             <div class="col-md-9">
-                                <h3 data-id="{{ $item->id }}">{{ $item->title }}</h3>
+                                <h3 data-id="{{ $item->id }}">#{{ $item->id }} - {{ $item->title }}</h3>
                                 <p>{{ $item->description }}</p>
                             </div>
                             <div class="col-md-3">

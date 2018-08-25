@@ -25,7 +25,7 @@
             <tbody>
             @foreach($categories as $category)
                 <tr id="{{ $category->id }}">
-                    <td><a href="/admin/category/{{ $category->id }}">{{ $category->title }}</a></td>
+                    <td><a href="/admin/category/{{ $category->id }}">#{{ $category->id }} - {{ $category->title }}</a></td>
                     <td>{{ $category->description }}</td>
                     <td><img src="{{ $category->illustration }}" class="thumbnail" alt="{{ basename($category->illustration) }}"></td>
                     <td>

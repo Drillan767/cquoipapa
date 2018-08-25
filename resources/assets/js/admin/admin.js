@@ -33,7 +33,7 @@ $("#new_category").submit(function (e) {
             $("#new_category")[0].reset();
             $('table.table tbody').append(
                 '<tr id="' + data.id + '">' +
-                '<td><a href="/admin/category/' + data.id + '">' + data.title + '</a></td>' +
+                '<td><a href="/admin/category/' + data.id + '">#' + data.id + ' - ' + data.title + '</a></td>' +
                 '<td>' + data.description + '</td>' +
                 '<td><img src="' + data.illustration + '" class="thumbnail" alt="' + data.illustration.split(/[\\/]/).pop() + '"/></td>' +
                 '<td><span></span></td>' +
@@ -74,7 +74,7 @@ $("#new_item").submit(function (e) {
             $('#new_item')[0].reset();
             $('.items').append(
                 '<div class="item" id="'+ data.id +'">' +
-                '<h3 data-id="' + data.id + '">' + data.title + '</h3>' +
+                '<h3 data-id="' + data.id + '">#' + data.id + ' - ' + data.title + '</h3>' +
                 '<p>' + data.description + '</p>' +
                 '<div class="align-images row"></div>' +
                 '</div>'
@@ -133,7 +133,7 @@ $("#edit_category").submit(function (e) {
             $('#m_edit_category').modal('hide');
             $('#' + id).empty().append(
                 '<td>' +
-                '<a href="/admin/category/' + id + '">' + data.title + '</a>' +
+                '<a href="/admin/category/' + id + '">#' + data.id +' - ' + data.title + '</a>' +
                 '</td>' +
                 '<td>' + data.description + '</td>' +
                 '<td><img src="' + data.illustration + '" class="thumbnail" alt="' + data.illustration.split(/[\\/]/).pop() + '"></td>' +
@@ -223,7 +223,7 @@ $("#edit_item").submit(function (e) {
             $('.item#' + id).empty().append(
                 '<div class="row">'+
                     '<div class="col-md-9">'+
-                        '<h3 data-id="' + data.id + '">' + data.title + '</h3>' +
+                        '<h3 data-id="' + data.id + '">#' + data.id + ' - ' + data.title + '</h3>' +
                         '<p>' + data.description + '</p>' +
                     '</div>'+
                     '<div class="col-md-3">'+

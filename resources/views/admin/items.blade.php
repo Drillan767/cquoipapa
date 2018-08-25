@@ -11,7 +11,7 @@
                     <div class="item" id="{{ $item->id }}">
                         <div class="row">
                             <div class="col-md-9">
-                                <h3 data-id="{{ $item->id }}">{{ $item->title }}</h3>
+                                <h3 data-id="{{ $item->id }}">#{{ $item->id }} - {{ $item->title }}</h3>
                                 <p>{{ $item->description }}</p>
                             </div>
                             <div class="col-md-3">
