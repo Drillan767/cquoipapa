@@ -23,7 +23,8 @@ class ItemController extends Controller {
 
   public function itemsList() {
   	$items = Item::all();
-	  return view('admin.items', ['items' => $items]);
+  	$categories = Category::all();
+	  return view('admin.items', compact('items', 'categories'));
   }
 
   /**
@@ -78,15 +79,14 @@ class ItemController extends Controller {
     }
 
     if(isset($request->item_illustration)) {
-    	$category_id = $item->categoryItems;
-      $data['illustration'] = $this->uploadFile($request->item_illustration, $item->id, $item->category_id);
+    	Storage::delete(str_replace('storage', 'public', $item->illustration));
+      $data['illustration'] = $this->uploadFile($request->item_illustration, $item->id, $item->categoryItems->first()->id);
     }
 
     if(isset($request->item_images)) {
       foreach($request->item_images as $image) {
-
         $item->image()->create([
-          'path' => $this->uploadItem($image, $item->id, $item->category_id)
+          'path' => $this->uploadItem($image, $item->id, $item->categoryItems->first()->id)
         ]);
       }
     }
@@ -137,6 +137,6 @@ class ItemController extends Controller {
 			$constraint->aspectRatio();
 		})->save($path . '/' . $file->getClientOriginalName());
 
-		return "storage/category/$category_id/items/$item_id/" . $file->getClientOriginalName();
+		return "/storage/category/$category_id/items/$item_id/" . $file->getClientOriginalName();
 	}
 }

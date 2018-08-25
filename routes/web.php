@@ -22,8 +22,6 @@ Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function() {
   Route::get('/user/edit', 'ClientController@editUser');
   Route::post('/user/edit', 'ClientController@postUser')->name('update_user');
   Route::get('/objets', 'ItemController@itemsList');
-
-
 });
 
 Route::post('/admin/categories', 'CategoryController@postCategory');
