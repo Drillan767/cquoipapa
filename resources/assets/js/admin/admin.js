@@ -221,8 +221,17 @@ $("#edit_item").submit(function (e) {
             $('#m_edit_item').modal('hide');
             $('#edit_item')[0].reset();
             $('.item#' + id).empty().append(
-                '<h3 data-id="' + data.id + '">' + data.title + '</h3>' +
-                '<p>' + data.description + '</p>' +
+                '<div class="row">'+
+                    '<div class="col-md-9">'+
+                        '<h3 data-id="' + data.id + '">' + data.title + '</h3>' +
+                        '<p>' + data.description + '</p>' +
+                    '</div>'+
+                    '<div class="col-md-3">'+
+                        '<a data-fancybox="gallery" href="'+ data.illustration +'">'+
+                            '<img src="'+ data.illustration +'" class="illustration">'+
+                        '</a>'+
+                    '</div>'+
+                '</div>'+
                 '<div class="align-images row"></div>'
             );
 
