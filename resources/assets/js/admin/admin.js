@@ -187,6 +187,14 @@ $('.item h3').on('click', function () {
                 $('<a data-fancybox="gallery" href="' + data.illustration + '">Illustration</a>').insertAfter('#m_edit_item input[name="item_illustration"]');
             }
             $('#m_edit_item textarea[name="item_description"]').val(data.description);
+            let ids = [];
+            $.each(data.category, function(index, category) {
+                ids.push(category.id);
+            });
+            $('#m_edit_item .edit-item-select')
+                .select2({ width: '100%' })
+                .val(ids)
+                .trigger('change');
             $('#m_edit_item').modal();
         },
         dataType: "json"

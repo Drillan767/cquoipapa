@@ -7,6 +7,7 @@ use App\Category;
 use App\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManagerStatic as Image;
 
 
 class ItemController extends Controller {
@@ -76,9 +77,9 @@ class ItemController extends Controller {
       $data['description'] = $request->item_description;
     }
 
-    if(isset($request->data_illustration)) {
-      Storage::delete(str_replace('storage', 'public', $item->illustration));
-      $data['illustration'] = $this->uploadFile($request->data_illustration, $item->id, $item->category_id);
+    if(isset($request->item_illustration)) {
+    	$category_id = $item->categoryItems;
+      $data['illustration'] = $this->uploadFile($request->item_illustration, $item->id, $item->category_id);
     }
 
     if(isset($request->item_images)) {
@@ -127,9 +128,15 @@ class ItemController extends Controller {
     return '/' . str_replace('public', 'storage', $path);
   }
 
-  private function uploadFile($file, $item_id, $category_id) {
-    $filename = $file->getClientOriginalName();
-    $path = $file->storeAs("public/category/$category_id/items/$item_id", $filename);
-    return '/' . str_replace('public', 'storage', $path);
-  }
+	private function uploadFile($file, $item_id, $category_id) {
+
+		$path = storage_path("app/public/category/$category_id/items/$item_id");
+		is_dir($path) ?: mkdir($path, 0777, true);
+
+		Image::make($file)->resize(NULL, 400, function ($constraint) {
+			$constraint->aspectRatio();
+		})->save($path . '/' . $file->getClientOriginalName());
+
+		return "storage/category/$category_id/items/$item_id/" . $file->getClientOriginalName();
+	}
 }

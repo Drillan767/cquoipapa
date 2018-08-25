@@ -16,8 +16,18 @@
             @if($items)
                 @foreach($items as $item)
                     <div class="item" id="{{ $item->id }}">
-                        <h3 data-id="{{ $item->id }}">{{ $item->title }}</h3>
-                        <p>{{ $item->description }}</p>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <h3 data-id="{{ $item->id }}">{{ $item->title }}</h3>
+                                <p>{{ $item->description }}</p>
+                            </div>
+                            <div class="col-md-3">
+                                <a data-fancybox="gallery" href="{{ $item->illustration }}">
+                                    <img src="{{ $item->illustration }}" class="illustration">
+                                </a>
+                            </div>
+                        </div>
+
 
                         <div class="align-images row">
                             @foreach($item->image as $image)
@@ -106,6 +116,14 @@
                         <div class="form-group">
                             <label for="item_illustration">Images</label>
                             <input type="file" class="form-control-file" name="item_images[]" id="item_illustration" multiple="multiple">
+                        </div>
+                        <div class="form-group">
+                            <label for="item_categories">Catégorie rattachée</label>
+                            <select class="edit-item-select" id="item_categories" name="item_categories[]" multiple="multiple">
+                                @foreach($categories as $id => $category)
+                                    <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="modal-footer">

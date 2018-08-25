@@ -8,9 +8,19 @@
         <div class="items">
             @if(count($items) > 0)
                 @foreach($items as $item)
+{{--                    {{ dd($item) }}--}}
                     <div class="item" id="{{ $item->id }}">
-                        <h3 data-id="{{ $item->id }}">{{ $item->title }}</h3>
-                        <p>{{ $item->description }}</p>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <h3 data-id="{{ $item->id }}">{{ $item->title }}</h3>
+                                <p>{{ $item->description }}</p>
+                            </div>
+                            <div class="col-md-3">
+                                <a data-fancybox="gallery" href="{{ $item->illustration }}">
+                                    <img src="{{ $item->illustration }}" class="illustration">
+                                </a>
+                            </div>
+                        </div>
 
                         <div class="align-images row">
                             @foreach($item->image as $image)

@@ -31,7 +31,9 @@ class ApiController extends Controller {
 	}
 
 	public function items(Request $request) {
-	  return response()->json(Item::find($request->id));
+		$response = Item::find($request->id);
+		$response->category = Item::find($request->id)->categoryItems;
+	  return response()->json($response);
   }
 
   public function getDescription(Request $request) {
