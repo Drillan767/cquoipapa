@@ -19,7 +19,7 @@
                 <th scope="col">Description</th>
                 <th scope="col">Image</th>
                 <th scope="col">Statut</th>
-                <th scope="col">Actions</th>
+                <th scope="col" class="actions">Actions</th>
             </tr>
             </thead>
             <tbody>
