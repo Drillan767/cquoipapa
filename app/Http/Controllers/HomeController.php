@@ -37,15 +37,4 @@ class HomeController extends Controller {
 		$item = Category::find($id)->item;
 		return view('admin.category', ['category' => $category, 'items' => $item]);
 	}
-
-	/**
-	 * @param $file
-	 * @param $category_id
-	 * @return string
-	 */
-	private function uploadItem($file, $category_id) {
-		$filename = $file->getClientOriginalName();
-		$path = $file->storeAs("public/category/$category_id/items", $filename);
-		return '/' . str_replace('public', 'storage', $path);
-	}
 }

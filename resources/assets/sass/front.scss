@@ -5,9 +5,7 @@ body {
   transition: all 600ms ease-in-out;
 }
 
-#header {
-  padding: 40px 0;
-
+#header, #footer {
   ul {
     a {
       font-size: 15px;
@@ -49,11 +47,14 @@ body {
 
   img {
     border-radius: $radius;
+    max-width: 100%;
   }
 
   .description {
     margin-top: 5vh;
   }
+
+
 }
 
 #stats {

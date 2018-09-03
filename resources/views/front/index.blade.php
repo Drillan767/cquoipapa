@@ -12,7 +12,9 @@
 {{-- HEADER --}}
 
 <nav class="navbar navbar-expand-md navbar-light bg-light" id="header">
-    <a href="/" class="navbar-brand">CKoiPapa</a>
+    <a href="/" class="navbar-brand">
+        <img src="img/ckoipapa.png" alt="">
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar7">
         <span class="navbar-toggler-icon" />
     </button>
@@ -21,14 +23,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="#accueil">Accueil</a>
             </li>
+
             <li class="nav-item">
-                <a class="nav-link" href="#menu">Menu</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#presentation">Présentation</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#gallerie">Gallerie</a>
+                <a class="nav-link" href="#description">Description</a>
             </li>
 
             <li class="nav-item">
@@ -45,20 +42,15 @@
 {{-- CAROUSEL --}}
 
 <div id="carousel" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-        <li data-target="#carousel" data-slide-to="0" class="active" />
-        <li data-target="#carousel" data-slide-to="1" />
-        <li data-target="#carousel" data-slide-to="2" />
-    </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100" src="https://placekitten.com/g/2000/1000" alt="First slide">
+            <img class="d-block w-100" src="img/elephant.jpg" alt="First slide">
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="https://placekitten.com/g/2000/1000" alt="Second slide">
+            <img class="d-block w-100" src="img/lion.jpg" alt="Second slide">
         </div>
         <div class="carousel-item">
-            <img class="d-block w-100" src="https://placekitten.com/g/2000/1000" alt="Third slide">
+            <img class="d-block w-100" src="img/zebres.jpg" alt="Third slide">
         </div>
     </div>
     <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
@@ -78,15 +70,19 @@
 <div class="container-fluid" id="description">
 <div class="row">
     <div class="col-md-3 text-center">
-        <img src="https://placekitten.com/g/200/300" alt="">
+        <img src="img/kidphone.jpg" alt="">
     </div>
     <div class="col-md-9">
         <div class="description">
             <p>
-                Marfa mixtape unicorn, snackwave venmo poutine leggings artisan pitchfork chambray helvetica. Adaptogen locavore tilde, taiyaki food truck selfies umami poke iceland. Neutra taxidermy freegan la croix copper mug, iceland pok pok pinterest celiac yuccie. Raclette shoreditch offal fingerstache, etsy scenester lo-fi cloud bread typewriter pork belly man braid shaman tofu brooklyn keytar. Authentic tumblr retro, jianbing pitchfork raclette beard raw denim farm-to-table. Art party edison bulb forage offal.
+                Découvrez CKoiPapa, la création d’une Application de reconnaissance de forme représente la volonté conjointe de trois étudiants
+                décidés à entreprendre dans le domaine de l’informatique. Cette ambition nous a mené à construire, rédiger
+                et peaufiner notre plan d’affaires en nous mettant dans des conditions réelles de création d’entreprise.
             </p>
             <p>
-                Man braid craft beer direct trade wolf subway tile tofu. Scenester raclette irony tote bag, PBR&B fixie +1 offal. Tumeric fam hammock DIY succulents taxidermy snackwave, salvia tbh. Hashtag biodiesel squid, portland listicle vape lo-fi. Marfa offal jean shorts, snackwave artisan chicharrones occupy quinoa keytar. VHS deep v seitan, messenger bag palo santo pitchfork hella forage.
+                Pour traduire notre idée par des mots couchés sur le papier nous avons défini, développé et affiné nos envies...
+                Une fois redescendus sur terre, nous nous sommes plongés dans le montage de cette « entreprise », au sens
+                large du thème, point par point, petit à petit.
             </p>
         </div>
     </div>
@@ -104,33 +100,20 @@
 
 {{-- STATISTICS --}}
 
-{{--DOWNLOAD--}}
-
-<div id="download" class="container-fluid">
-    <div class="row">
-        <div class="col-md-9">
-            <img src="{{asset('img/gplay.png')}}" alt="">
-        </div>
-        <div class="col-md-3 text-center">
-            <img src="https://placekitten.com/g/200/300" alt="">
-        </div>
-    </div>
-</div>
-
-{{-- DOWNLOAD --}}
-
 {{-- FOOTER --}}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="footer">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" href="#">Mentions légales</a>
-            <a class="nav-item nav-link" href="#">Politique de confidentialité</a>
-            <a class="nav-item nav-link" href="#">Contact</a>
-        </div>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <button type="button" class="button_contact" data-toggle="modal" data-target="#exampleModal">
+                    Contact
+                </button>
+            </li>
+        </ul>
     </div>
 
     <div class="justify-content-stretch">
@@ -142,13 +125,11 @@
 
 {{--FOOTER--}}
 
-
-
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Contact</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -159,8 +140,6 @@
         </div>
     </div>
 </div>
-
-
 
 <script src="{{ asset('js/index.js') }}"></script>
 </body>

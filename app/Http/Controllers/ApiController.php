@@ -24,7 +24,14 @@ class ApiController extends Controller {
 
 	public function categories(Request $request) {
 		$user = User::where('token', '=', $request->token)->firstOrFail();
-		return response()->json($user->userCategories()->get());
+		$categories = $user->userCategories()->get();
+		$response = [];
+		foreach($categories as $category) {
+			if($category->enabled) {
+				array_push($response, $category);
+			}
+		}
+		return response()->json($response);
 	}
 
 	public function getCategory($id) {
@@ -46,7 +53,7 @@ class ApiController extends Controller {
   }
 
   public function overall() {
-//		$users = count(User::where('roles', '=', 'client'));
+		$users = count(User::where('roles', '=', 'client')->get());
 		$categories = count(Category::all());
 		$images = count(Image::all());
 		$contributors = count(User::all());
