@@ -29,7 +29,7 @@
                     <td>{{ $category->description }}</td>
                     <td><img src="{{ $category->illustration }}" class="thumbnail" alt="{{ basename($category->illustration) }}"></td>
                     <td>
-                        @if ($category->actif)
+                        @if ($category->enabled)
                             <span class="enabled">Actif</span>
                         @else
                             <span class="disabled">Inactif</span>
