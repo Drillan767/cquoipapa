@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Item;
 use App\User;
+use App\Image;
 
 class ApiController extends Controller {
 
@@ -42,5 +43,14 @@ class ApiController extends Controller {
 	  $user->update(['nb_api_call' => $inc]);
 	  $item = Item::find($request->item_id);
 	  return response()->json($item->description);
+  }
+
+  public function overall() {
+//		$users = count(User::where('roles', '=', 'client'));
+		$categories = count(Category::all());
+		$images = count(Image::all());
+		$contributors = count(User::all());
+
+		return response()->json(compact('users', 'categories', 'images', 'contributors'));
   }
 }

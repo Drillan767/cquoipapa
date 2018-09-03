@@ -44,8 +44,8 @@ Route::prefix('api/v1')->group(function () {
   Route::post('user/login', 'ApiController@login');
   Route::post('get_description', 'ApiController@getDescription');
   Route::post('client', 'ClientController@getClient');
+  Route::get('overall', 'ApiController@overall');
 });
-
 
 // Sends values to the layout.
 View::composer('layouts.admin', function ($view) {
